@@ -1,0 +1,83 @@
+package com.hackerrank;
+
+/*
+ * This a proprietary Class
+ */
+
+import java.io.*;
+import java.util.*;
+import java.text.*;
+import java.math.*;
+import java.util.regex.*;
+
+public class BoatClean
+{
+    static void next_move( int posx, int posy, String[] board )
+    {
+        List<int[]> dirtyCellPositions = getDirtyCellPositions( board );
+        
+        int[] nearestDirtyCell = dirtyCellPositions.get( 0 );
+        int prevDiff = Math.abs( posx-nearestDirtyCell[0] ) + Math.abs( posy - nearestDirtyCell[1] );
+        for( int index = 1 ; index < dirtyCellPositions.size() ; index++ )
+        {
+            int[] nextDirtyCell = dirtyCellPositions.get( index );
+            int currentDiff = Math.abs( posx-nextDirtyCell[0] ) + Math.abs( posy - nextDirtyCell[1] );
+            if(prevDiff>currentDiff)
+                nearestDirtyCell = nearestDirtyCell;
+        }
+        dirtyCellPositions.remove( nearestDirtyCell );
+        
+        
+    }
+
+    private static List getDirtyCellPositions( String[] board )
+    {
+        List dirtyCellPostions = new ArrayList<int[]>();
+        int[] princessPosition = new int[2];
+        int rowNo = 0;
+        for( String row : board )
+        {
+            char[] characters = row.toCharArray();
+            int columnNo = 0;
+            for( char c : characters )
+            {
+                if( c == 'd' )
+                {
+                    princessPosition[0] = rowNo;
+                    princessPosition[1] = columnNo;
+                    dirtyCellPostions.add( princessPosition );
+                }
+                columnNo++;
+            }
+            rowNo++;
+        }
+        return null;
+    }
+
+    public static void main( String[] args )
+    {
+//        Scanner in = new Scanner( System.in );
+//        int[] pos = new int[2];
+//        String board[] = new String[5];
+//        for ( int i = 0; i < 2; i++ )
+//            pos[ i ] = in.nextInt();
+//        for ( int i = 0; i < 5; i++ )
+//            board[ i ] = in.next();
+//        next_move( pos[ 0 ], pos[ 1 ], board );
+        Integer i = 5;
+        int[] arr = new int[1];
+        arr[0] = i;
+        increment(arr);
+        System.out.println(arr[0]);
+    }
+
+    private static void increment( int[] arr )
+    {
+        arr[0]++;
+    }
+}
+static void increment( int[] arr )
+    {
+        arr[0]++;
+    }
+}
