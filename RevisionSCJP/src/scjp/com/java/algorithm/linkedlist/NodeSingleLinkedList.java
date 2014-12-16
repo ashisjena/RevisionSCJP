@@ -2,8 +2,6 @@ package scjp.com.java.algorithm.linkedlist;
 
 import java.util.Random;
 
-import com.azure.spark.database.sqlparser.sqlstructure.FromClause;
-
 public class NodeSingleLinkedList<E>
 {
 	public final static NodeSingleLinkedList<Integer> DEMO_NODE = new NodeSingleLinkedList<Integer>( new Random().nextInt( Integer.MAX_VALUE ) + Integer.MIN_VALUE );
@@ -37,13 +35,18 @@ public class NodeSingleLinkedList<E>
 		return this.next;
 	}
 
-	public static void toString( NodeSingleLinkedList<Integer> head )
+	@Override
+	public String toString()
 	{
+		NodeSingleLinkedList<E> head = this;
+		StringBuilder sb = new StringBuilder();
 		while ( head != null )
 		{
-			System.out.println( head.getValue() );
+			sb.append( head.getValue() + "   " );
 			head = head.getNext();
 		}
+
+		return sb.toString();
 	}
 
 	public static NodeSingleLinkedList<Integer> formLinkedList( int[] values )
@@ -75,7 +78,7 @@ public class NodeSingleLinkedList<E>
 	{
 		if ( start == null )
 			start = 1;
-		return formLinkedList( size, start );
+		return formLinkedList( size, null, start );
 	}
 
 	public static NodeSingleLinkedList<Integer> formLinkedList( int size, Integer increment, Integer start )
@@ -86,7 +89,7 @@ public class NodeSingleLinkedList<E>
 		NodeSingleLinkedList<Integer> head = new NodeSingleLinkedList<Integer>( start );
 		NodeSingleLinkedList<Integer> finger = head;
 
-		for ( int i = start + increment, length = 0; length < size; i += increment, length++ )
+		for ( int i = start + increment, length = 1; length < size; i += increment, length++ )
 		{
 			finger.next = new NodeSingleLinkedList<Integer>( i );
 			finger = finger.next;
