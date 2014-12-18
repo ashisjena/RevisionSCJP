@@ -1,4 +1,4 @@
-package scjp.com.java.hackerrank.wallmart;
+package scjp.com.java.companies.wallmart;
 
 /*
  *
