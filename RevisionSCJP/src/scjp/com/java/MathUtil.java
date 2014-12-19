@@ -2,6 +2,8 @@ package scjp.com.java;
 
 public class MathUtil
 {
+	public static final long _1MB_AS_BYTES =  1 << 20;
+	
 	public static int permutation( int n, int r )
 	{
 		return ( findFactorial( n ) / findFactorial( n - r ) );

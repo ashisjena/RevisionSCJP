@@ -1,10 +1,11 @@
 package scjp.com.java.hackerrank;
 
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Arrays;
+import java.util.Comparator;
+import java.util.Map;
+import java.util.Map.Entry;
+import java.util.TreeMap;
 
 /*
 Problem Statement
@@ -48,14 +49,67 @@ Explanation
 
 public class IsFibo
 {
-	public static void main( String[] args ) throws IOException
+	public static <V> void main( String[] args ) throws IOException
 	{
-		BufferedReader bufferedReader = new BufferedReader( new InputStreamReader( System.in ) );
-		String line = bufferedReader.readLine();
-		int no = Integer.parseInt( line );
+		int no = ConsoleReader.getInstance().readInteger();
 
-		int arr[] = new int[no];
+		Long arr[][] = new Long[no][2];
 		for ( int i = 0; i < no; i++ )
-			arr[i] = Integer.parseInt( bufferedReader.readLine() );
+		{
+			arr[i][0] = ConsoleReader.getInstance().readLong();
+			arr[i][1] = ( long ) i;
+		}
+
+		Arrays.sort( arr, new Comparator<Long[]>()
+		{
+			@Override
+			public int compare( Long[] o1, Long[] o2 )
+			{
+				return o1[0].compareTo( o2[0] );
+			}
+		} );
+
+		Map<Long, String> indexToResultMap = new TreeMap<Long, String>();
+
+		long prev = 0;
+		long next = 1;
+		for ( int i = 0; i < arr.length; i++ )
+		{
+			if ( arr[i][0] == prev + next )
+				indexToResultMap.put( arr[i][1], "IsFibo" );
+			else if ( arr[i][0] < prev + next )
+				indexToResultMap.put( arr[i][1], "IsNotFibo" );
+			else
+			{
+				next += prev;
+				prev = next - prev;
+				i--;
+			}
+		}
+
+		for ( Entry<Long, String> entry : indexToResultMap.entrySet() )
+			System.out.println( entry.getValue() );
+
+		//		printIsFibo( arr, 0, 0, 1, indexToResultMap );  // Giving stack overflow error for large data
+
+		ConsoleReader.getInstance().close();
+	}
+
+	private static void printIsFibo( Long[][] arr, int index, long prev, long next, Map<Long, String> indexToResultMap )
+	{
+		if ( index == arr.length )
+			return;
+		else if ( arr[index][0] == prev + next )
+		{
+			indexToResultMap.put( arr[index][1], "IsFibo" );
+			printIsFibo( arr, ++index, prev, next, indexToResultMap );
+		}
+		else if ( arr[index][0] < prev + next )
+		{
+			indexToResultMap.put( arr[index][1], "IsNotFibo" );
+			printIsFibo( arr, ++index, prev, next, indexToResultMap );
+		}
+		else
+			printIsFibo( arr, index, next, prev + next, indexToResultMap );
 	}
 }
