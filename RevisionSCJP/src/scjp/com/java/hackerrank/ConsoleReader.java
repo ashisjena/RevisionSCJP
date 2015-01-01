@@ -21,7 +21,7 @@ public final class ConsoleReader
 	private ConsoleReader()
 	{
 		if ( LazyHolder.INSTANCE != null )
-			throw new RuntimeException( "Singleton object is already intitialized" );
+			throw new RuntimeException( "ConsoleReader Singleton object is already intitialized" );
 
 		br = new BufferedReader( new InputStreamReader( System.in ) );
 	}
@@ -33,44 +33,44 @@ public final class ConsoleReader
 
 	public int readInteger() throws NumberFormatException, IOException
 	{
-		return Integer.parseInt( this.br.readLine() );
+		return Integer.parseInt( readLine() );
 	}
 
 	public long readLong() throws NumberFormatException, IOException
 	{
-		return Long.parseLong( this.br.readLine() );
+		return Long.parseLong( readLine() );
 	}
 
 	public double readDouble() throws NumberFormatException, IOException
 	{
-		return Double.parseDouble( this.br.readLine() );
+		return Double.parseDouble( readLine() );
 	}
 
 	@SuppressWarnings( "unchecked" )
 	public <T> T[] readLineNSplitWithSpace( Class<T> clazz ) throws IOException
 	{
-		final String line = readLine();
+		final String[] words = readLine().split( "\\s+" );
 		int i = 0;
 		if ( clazz.equals( String.class ) )
-			return ( T[] ) line.split( "\\s+" );
+			return ( T[] ) words;
 		else if ( clazz.equals( Integer.class ) )
 		{
-			final Integer[] arr = new Integer[line.length()];
-			for ( String str : line.split( "\\s+" ) )
+			final Integer[] arr = new Integer[words.length];
+			for ( String str : words )
 				arr[i++] = Integer.parseInt( str );
 			return ( T[] ) arr;
 		}
 		else if ( clazz.equals( Long.class ) )
 		{
-			final Long[] arr = new Long[line.length()];
-			for ( String str : line.split( "\\s+" ) )
+			final Long[] arr = new Long[words.length];
+			for ( String str : words )
 				arr[i++] = Long.parseLong( str );
 			return ( T[] ) arr;
 		}
 		else if ( clazz.equals( Double.class ) )
 		{
-			final Double[] arr = new Double[line.length()];
-			for ( String str : line.split( "\\s+" ) )
+			final Double[] arr = new Double[words.length];
+			for ( String str : words )
 				arr[i++] = Double.parseDouble( str );
 			return ( T[] ) arr;
 		}

@@ -1,6 +1,5 @@
 package scjp.com.java.chapter7;
 
-import java.util.Comparator;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Map.Entry;
@@ -16,28 +15,12 @@ public class MapSortByValue
 		map.put( "hari", 8 );
 		map.put( "govinda", 4 );
 
-		Map<String, Integer> sortedMap = new TreeMap<String, Integer>( new ValueComparator( map ) );
+		Map<String, Integer> sortedMap = new TreeMap<String, Integer>( new ValueComparator<String>( map ) );
 		sortedMap.putAll( map );
 		
 		for(Entry<String, Integer> entry : sortedMap.entrySet())
 		{
 			System.out.println(entry.getValue());
 		}
-	}
-}
-
-class ValueComparator implements Comparator<String>
-{
-	private Map<String, Integer> map;
-
-	public ValueComparator( Map<String, Integer> map )
-	{
-		this.map = map;
-	}
-
-	@Override
-	public int compare( String o1, String o2 )
-	{
-		return map.get( o1 ).compareTo( map.get( o2 ) );
 	}
 }

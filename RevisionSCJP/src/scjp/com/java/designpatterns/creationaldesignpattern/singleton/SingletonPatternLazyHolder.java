@@ -1,7 +1,6 @@
 package scjp.com.java.designpatterns.creationaldesignpattern.singleton;
 
-
-public final class SingletonPatternLazyHolder
+public class SingletonPatternLazyHolder
 {
     private static class LazyHolder
     {
