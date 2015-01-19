@@ -9,13 +9,13 @@ public class PowerSet
 	{
 		int[] a =
 		{ 1, 2, 3, 4 };
-		/*for ( String str : powerSet( a ) )
+		for ( String str : powerSet( a ) )
 		    System.out.println( str );
 
-		System.out.println();*/
+		System.out.println();
 
-		for ( List<Integer> subSet : powerSetAsList( a ) )
-			System.out.println( subSet );
+		/*for ( List<Integer> subSet : powerSetAsList( a ) )
+			System.out.println( subSet );*/
 
 	}
 

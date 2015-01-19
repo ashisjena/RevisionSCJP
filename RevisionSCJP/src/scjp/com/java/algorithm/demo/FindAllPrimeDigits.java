@@ -8,7 +8,7 @@ public class FindAllPrimeDigits
 {
 	public static void main( String[] args )
 	{
-		new Thread( null, new MyThread( 10000 ), "", 256L * 1 << 6 ).start();
+		new Thread( null, new MyThread( 100 ), "", 256L * 1 << 6 ).start();
 	}
 
 	static class MyThread implements Runnable
