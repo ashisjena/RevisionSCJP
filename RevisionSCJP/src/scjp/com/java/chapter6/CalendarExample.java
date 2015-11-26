@@ -5,7 +5,7 @@ import java.util.Date;
 
 import org.joda.time.DateTime;
 
-import com.azure.sparkcommon.SparkDate;
+//import com.azure.sparkcommon.SparkDate;
 
 public class CalendarExample
 {
@@ -21,6 +21,6 @@ public class CalendarExample
         DateTime dateTime = new DateTime(); 
         DateTime pivotDttm = new DateTime();
         pivotDttm = pivotDttm.plusDays( 1 );
-        System.out.println(SparkDate.dayDiff( dateTime, pivotDttm ));
+        //System.out.println(SparkDate.dayDiff( dateTime, pivotDttm ));
     }
 }

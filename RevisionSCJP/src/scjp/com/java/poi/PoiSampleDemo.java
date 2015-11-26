@@ -16,14 +16,14 @@ import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.ss.usermodel.WorkbookFactory;
 import org.joda.time.format.DateTimeFormatter;
 
-import com.azure.sparkcommon.SparkDate;
+//import com.azure.sparkcommon.SparkDate;
 
 public class PoiSampleDemo
 {
 	public static final String EMPTY_STRING = "";
 	public static final String EXCEL_GENERAL_FIELD_FORMAT_CODE = "General";
 	public static final int SYSTEM_DP = 6;
-	public static final DateTimeFormatter dateStringForStorageFormatter = SparkDate.dateStringForStorageFormatter;
+	//public static final DateTimeFormatter dateStringForStorageFormatter = SparkDate.dateStringForStorageFormatter;
 
 	public static void main( String[] args ) throws InvalidFormatException, IOException
 	{

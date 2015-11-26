@@ -19,7 +19,7 @@ import javax.mail.internet.MimeMessage;
 import javax.mail.internet.MimeMessage.RecipientType;
 import javax.mail.internet.MimeMultipart;
 
-import com.azure.sparkcommon.StringHelper;
+//import com.azure.sparkcommon.StringHelper;
 
 public class MailHelper
 {
@@ -141,7 +141,7 @@ public class MailHelper
         // check each address to see if we have any specified
         for ( String address : addresses )
         {
-            if ( !StringHelper.isEmpty( address ) )
+            //if ( !StringHelper.isEmpty( address ) )
                 return true;
         }
 
@@ -159,11 +159,11 @@ public class MailHelper
         for ( String address : addresses )
         {
             // ignore if this address is empty
-            if ( StringHelper.isEmpty( address ) )
+            //if ( StringHelper.isEmpty( address ) )
                 continue;
 
             // add to the message
-            message.addRecipient( type, new InternetAddress( address, false ) );
+            //message.addRecipient( type, new InternetAddress( address, false ) );
         }
     }
     

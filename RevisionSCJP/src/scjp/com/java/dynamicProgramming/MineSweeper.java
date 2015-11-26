@@ -1,6 +1,7 @@
 package scjp.com.java.dynamicProgramming;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Random;
@@ -9,7 +10,7 @@ import java.util.Set;
 public class MineSweeper
 {
 	public final static int size = 5;
-	public final static int noOfBombs = 10;
+	public final static int noOfBombs = 6;
 	public final static char bomb = '*';
 	public final static char emptySpace = '-';
 	public final static Random random = new Random();
@@ -21,18 +22,22 @@ public class MineSweeper
 		
 		char[][] matrix = new char[size][size];
 
+		// Generating random coordinates
 		Set<Coordinate> setOfCoordinates = new HashSet<Coordinate>();
 		while ( setOfCoordinates.size() < noOfBombs )
 			setOfCoordinates.add( new Coordinate( random.nextInt( size ), random.nextInt( size ) ) );
 
+		// Setting Bombs in matrix
 		for ( Coordinate coordinate : setOfCoordinates )
 			matrix[coordinate.rowNumber][coordinate.columnNumber] = bomb;
 
+		// Solving
 		for ( int rowIndex = 0; rowIndex < size; rowIndex++ )
 			for ( int columnIndex = 0; columnIndex < size; columnIndex++ )
 				if ( matrix[rowIndex][columnIndex] == bomb )
 					updateAdjecentCoordinates( matrix, getValidAdjecentCoordinates( rowIndex, columnIndex ) );
 
+		// Printing the matrix
 		for ( int rowIndex = 0; rowIndex < size; rowIndex++ )
 		{
 			for ( int columnIndex = 0; columnIndex < size; columnIndex++ )
@@ -57,7 +62,7 @@ public class MineSweeper
 				if ( Character.isDigit( ch ) )
 					value = Character.getNumericValue( ch );
 
-				matrix[rowNumber][columnNumber] = ( char ) ( ( ( int ) '0' ) + ( ++value ) );
+				matrix[rowNumber][columnNumber] = ( char ) ( ( ( int ) '0' ) + ( ++value ) ); // converting character to integer
 			}
 		}
 	}
@@ -73,8 +78,15 @@ public class MineSweeper
 		Coordinate.addCoordinate( rowIndex + 1, columnIndex - 1, size, coordinates );
 		Coordinate.addCoordinate( rowIndex + 1, columnIndex, size, coordinates );
 		Coordinate.addCoordinate( rowIndex + 1, columnIndex + 1, size, coordinates );
-
 		return coordinates;
+	}
+	
+	private static boolean isValidCoordinate(int rowIndex, int columnIndex, int max)
+	{
+	  if ( ( rowIndex < 0 || columnIndex < 0 || rowIndex >= max || columnIndex >= max ) )
+          return false;
+	  
+	  return true;
 	}
 }
 
@@ -87,6 +99,12 @@ class Coordinate
 	{
 		this.rowNumber = rowNumber;
 		this.columnNumber = columnNumber;
+	}
+	
+	@Override
+	public String toString()
+	{
+	 return (rowNumber + "\"" + columnNumber);
 	}
 
 	public static boolean addCoordinate( int rowNumber, int columnNumber, int maxSize, List<Coordinate> coordinates )

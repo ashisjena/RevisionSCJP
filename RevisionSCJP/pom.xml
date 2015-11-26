@@ -7,6 +7,11 @@
 
 	<dependencies>
 		<dependency>
+		    <groupId>com.squareup</groupId>
+		    <artifactId>tape</artifactId>
+		    <version>1.2.3</version>
+		</dependency>
+		<dependency>
 			<groupId>javax.mail</groupId>
 			<artifactId>mail</artifactId>
 			<version>1.4.7</version>
@@ -16,7 +21,7 @@
 			<artifactId>joda-time</artifactId>
 			<version>2.5</version>
 		</dependency>
-		<dependency>
+		<!-- <dependency>
 			<groupId>com.subex.spark</groupId>
 			<artifactId>spark-old</artifactId>
 			<version>1.0.0</version>
@@ -25,7 +30,7 @@
 			<groupId>com.subex.spark</groupId>
 			<artifactId>spark-common-old</artifactId>
 			<version>1.0.0</version>
-		</dependency>
+		</dependency> -->
 		<dependency>
 			<groupId>org.apache.poi</groupId>
 			<artifactId>poi-ooxml</artifactId>

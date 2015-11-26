@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
+import javax.print.attribute.standard.PrinterMoreInfoManufacturer;
+
 public class AnagramString
 {
 	static int counter1 = 0;
@@ -25,15 +27,14 @@ public class AnagramString
 
 	private static void permutation( String prefix, String str, List<String> anagrams )
 	{
-		counter1++;
-		if ( str.length() == 0 )
-		{
-			anagrams.add( prefix );
-			return;
-		}
-
-		for ( int index = 0; index < str.length(); index++ )
-			permutation( prefix + str.charAt( index ), str.substring( 0, index ) + str.substring( index + 1, str.length() ), anagrams );
+	  counter1++;
+	  if(str.length() == 0)
+	  {
+	    anagrams.add(prefix);
+	    return;
+	  }
+	  for(int i = 0; i < str.length(); i++)
+	    permutation(prefix + str.charAt(i), str.substring(0,i) + str.substring(i+1),anagrams);
 	}
 
 	private static void permutation( String str, List<String> anagrams )
@@ -59,7 +60,7 @@ public class AnagramString
 					for ( Character chrs : subQueue )
 					{
 						result += chrs;
-//						counter2++;
+						counter2++;
 					}
 
 					anagrams.add( result );

@@ -11,23 +11,21 @@ public class SerializationSuperClassIsNotSerializable
 {
     public static void main( String[] args ) throws IOException, ClassNotFoundException
     {
-        ByteArrayOutputStream bas = new ByteArrayOutputStream();
-        ObjectOutputStream oos = new ObjectOutputStream( bas );
+        ByteArrayOutputStream bos = new ByteArrayOutputStream();
+        ObjectOutputStream oos = new ObjectOutputStream( bos );
         Dog dog = new Dog( "Jimmy", 30, "Black" );
         System.out.println( "Before Serialization : " + dog.name + ", " + dog.weight + ", " + dog.collar.collarColor);
-        dog.name = "Sita";
         oos.writeObject( dog );
 
-        ObjectInputStream ois = new ObjectInputStream( new ByteArrayInputStream( bas.toByteArray() ) );
+        ObjectInputStream ois = new ObjectInputStream( new ByteArrayInputStream( bos.toByteArray() ) );
         // or for speed-up reading --->  ois = new ObjectInputStream( new BufferedInputStream( new ByteArrayInputStream( bas.toByteArray() ) ) );
         dog = (Dog)ois.readObject();
-        System.out.println( "Before Serialization : " + dog.name + ", " + dog.weight + ", " + dog.collar.collarColor);
+        System.out.println( "After Serialization : " + dog.name + ", " + dog.weight + ", " + dog.collar.collarColor);
     }
 }
 
 class Dog extends Animal implements Serializable
 {
-    private static final long serialVersionUID = 1L;
     public String name;
     public transient Collar collar;
 
@@ -49,12 +47,11 @@ class Dog extends Animal implements Serializable
     private void readObject(ObjectInputStream ois) throws IOException, ClassNotFoundException
     {
         ois.defaultReadObject();
-        int ch = 0;
         String collarColor = "";
-        while((ch = ois.read()) != -1)
-        {
+        
+        for (int ch = ois.read(); ch != -1; ch = ois.read())
             collarColor += (char)ch;
-        }
+        
         this.collar = new Collar();
         this.collar.collarColor = collarColor;
     }

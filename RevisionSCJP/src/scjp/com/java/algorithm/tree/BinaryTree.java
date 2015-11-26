@@ -1,7 +1,5 @@
 package scjp.com.java.algorithm.tree;
 
-import org.apache.poi.hdf.extractor.util.BTreeSet;
-
 public class BinaryTree<E>
 {
 	private E data;
@@ -69,7 +67,11 @@ public class BinaryTree<E>
 		if ( left == null )
 			left = new BinaryTree<E>();
 		else if ( this.left != null && this.left.parent == this )
+		{
 			this.left.parent = null;
+			this.left = left;
+			left.parent = this;
+		}
 	}
 
 	public BinaryTree<E> getRight()
@@ -85,7 +87,11 @@ public class BinaryTree<E>
 		if ( right == null )
 			right = new BinaryTree<E>();
 		else if ( this.right != null && this.right.parent == this )
+		{
 			this.right.parent = null;
+			this.right = right;
+			this.right.parent = this;
+		}
 	}
 
 	public int size()

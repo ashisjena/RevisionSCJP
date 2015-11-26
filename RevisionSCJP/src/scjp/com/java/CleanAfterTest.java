@@ -1,50 +1,38 @@
 package scjp.com.java;
 
-import java.util.Arrays;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
+import java.io.IOException;
 
 public class CleanAfterTest
 {
-
-	public static final String CELL_OFFSET_REGEX = "\\(\\s*-?\\d\\s*,\\s*-?\\d\\s*\\)";
-	public static void main( String[] args )
+	public static void main( String[] args ) throws IOException
 	{
-		String str = "(           1, 3 )";
-		
-		if("(1,3)".matches( CELL_OFFSET_REGEX ))
-			System.out.println("True");
-		else
-			System.out.println("False");
-		
-		System.out.println(Arrays.deepToString( str.replaceAll( "\\(|\\)|\\s*", "" ).split( "," ) ));
-		
-		System.out.println(convertUnderScoreToCamelCase( "rama_is_nice" ));
-		str = "RamaIsNice";
-		System.out.println(str.trim().replaceAll( "([a-z0-9])([A-Z])", "$1_$2" ) );
-		
-		int abc = 10;
-		Object xyz = abc;
-		System.out.println(xyz.getClass());
-	}
-	
-	
-	public static void method()
-	{
-	}
-	
-	public static String convertUnderScoreToCamelCase( String str )
-	{
-		Pattern p = Pattern.compile( "_(.)" );
-		Matcher m = p.matcher( str );
-		StringBuffer sb = new StringBuffer();
-		while ( m.find() )
-		{
-			m.appendReplacement( sb, m.group( 1 ).toUpperCase() );
-		}
+	  Integer i = new Integer(3);
+	  Integer j = new Integer(3);
+	  
+    if (i == j)
+      System.out.println("==");
 
-		m.appendTail( sb );
-		return sb.toString(); 
-	}
+    if (i == 3)
+      System.out.println("Wrapper and primitive");
+    
+    i = j = 345435435;
+    
+    if(i == j)
+      System.out.println("Equal working");
+	  
+	  /*try 
+      { 
+          return; 
+      } 
+      finally 
+      {
+          System.out.println( "Finally" ); 
+      } */
+	  
+	  if( "Welcome".trim() == "Welcome".trim() )
+	    System.out.println("Equal");
+	    else
+	    System.out.println("Not Equal");
 
+	}
 }
