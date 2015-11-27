@@ -1,6 +1,9 @@
 package scjp.com.java.algorithm.tree;
 
-public class BinaryTree<E>
+import java.util.ArrayList;
+import java.util.List;
+
+public class BinaryTree<E extends Comparable<E>>
 {
 	private E data;
 	private BinaryTree<E> parent, left, right;
@@ -12,14 +15,18 @@ public class BinaryTree<E>
 		if ( left == null )
 			left = new BinaryTree<E>();
 
-		this.left = left;
-		this.left.setParent( this );
+        if (left != null) {
+          this.left = left;
+          this.left.setParent(this);
+        }
 
 		if ( right == null )
 			right = new BinaryTree<E>();
 
-		this.right = right;
-		this.right.setParent( this );
+        if (right != null) {
+          this.right = right;
+          this.right.setParent(this);
+        }
 	}
 
 	BinaryTree( E val )
@@ -99,7 +106,9 @@ public class BinaryTree<E>
 		if ( isEmpty() )
 			return 0;
 
-		return left.size() + right.size() + 1;
+		int leftSize = left.size();
+		int rightSize = right.size();
+		return leftSize + rightSize + 1;
 	}
 
 	public BinaryTree<E> getRoot()
@@ -162,15 +171,34 @@ public class BinaryTree<E>
 
 		return false;
 	}
+	
+    /*public boolean add(E data) {
+      if (data == this.data)
+        return false;
+      else if (data.compareTo(this.data) < 0) {
+        if (left == null) {
+          left = new BinaryTree<E>(data);
+          return true;
+        } else
+          return left.add(data);
+      } else if (data.compareTo(this.data) > 0) {
+        if (right == null) {
+          right = new BinaryTree<E>(data);
+          return true;
+        } else
+          return right.add(data);
+      }
+      return false;
+    }*/
 
-	public static BinaryTree<Integer> formBinaryTree( int noOfElements )
+	public static BinaryTree<Integer> formBinaryTree( int[] noOfElements )
 	{
 		BinaryTree<Integer> root = null;
 
-		for ( int i = 0; i < noOfElements; i++ )
+		for ( int i : noOfElements )
 		{
 			BinaryTree<Integer> node = new BinaryTree<Integer>( i );
-			if ( root == null || root.data == null )
+			if ( root == null )
 				root = node;
 			else
 			{
@@ -178,19 +206,34 @@ public class BinaryTree<E>
 				BinaryTree<Integer> parent = null;
 				while ( true )
 				{
-					if ( finger == null || finger.data == null )
+					if ( finger == node )
 					{
 						node.setParent( parent );
 						break;
 					}
 					parent = finger;
+					
 					if ( node.data > finger.data )
 					{
-						finger = finger.right;
+					    if(finger.right.data == null)
+					      finger = finger.right = node;
+					    else if(finger.left.data == null)
+                          finger = finger.left = node;
+					    else if(finger.left.size() > finger.right.size() && finger.left.isFull())
+	                      finger = finger.right;
+	                    else
+	                      finger = finger.left;
 					}
-					else
+					else 
 					{
-						finger = finger.left;
+  					    if(finger.left.data == null)
+					      finger = finger.left = node;
+  					    else if(finger.right.data == null)
+  					      finger = finger.right = node;
+					    else if(finger.left.size() > finger.right.size() && finger.left.isFull())
+	                      finger = finger.right;
+	                    else
+	                      finger = finger.left;
 					}
 				}
 			}
@@ -198,4 +241,111 @@ public class BinaryTree<E>
 
 		return root;
 	}
+	
+	public static void print(BinaryTree<Integer> root)
+    {
+        List<List<String>> lines = new ArrayList<List<String>>();
+
+        List<BinaryTree<Integer>> level = new ArrayList<BinaryTree<Integer>>();
+        List<BinaryTree<Integer>> next = new ArrayList<BinaryTree<Integer>>();
+
+        level.add(root);
+        int nn = 1;
+
+        int widest = 0;
+
+        while (nn != 0) {
+            List<String> line = new ArrayList<String>();
+
+            nn = 0;
+
+            for (BinaryTree<Integer> n : level) {
+                if (n == null || n.data == null) {
+                    line.add(null);
+
+                    next.add(null);
+                    next.add(null);
+                } else {
+                    String aa = n.getData().toString();
+                    line.add(aa);
+                    if (aa.length() > widest) widest = aa.length();
+
+                    next.add(n.getLeft());
+                    next.add(n.getRight());
+
+                    if (n.getLeft() != null) nn++;
+                    if (n.getRight() != null) nn++;
+                }
+            }
+
+            if (widest % 2 == 1) widest++;
+
+            lines.add(line);
+
+            List<BinaryTree<Integer>> tmp = level;
+            level = next;
+            next = tmp;
+            next.clear();
+        }
+
+        int perpiece = lines.get(lines.size() - 1).size() * (widest + 4);
+        for (int i = 0; i < lines.size(); i++) {
+            List<String> line = lines.get(i);
+            int hpw = (int) Math.floor(perpiece / 2f) - 1;
+
+            if (i > 0) {
+                for (int j = 0; j < line.size(); j++) {
+
+                    // split node
+                    char c = ' ';
+                    if (j % 2 == 1) {
+                        if (line.get(j - 1) != null) {
+                            c = (line.get(j) != null) ? '^' : '|';
+                        } else {
+                            if (j < line.size() && line.get(j) != null) c = '|';
+                        }
+                    }
+                    System.out.print(c);
+
+                    // lines and spaces
+                    if (line.get(j) == null) {
+                        for (int k = 0; k < perpiece - 1; k++) {
+                            System.out.print(" ");
+                        }
+                    } else {
+
+                        for (int k = 0; k < hpw; k++) {
+                            System.out.print(j % 2 == 0 ? " " : "-");
+                        }
+                        System.out.print(j % 2 == 0 ? "|" : "|");
+                        for (int k = 0; k < hpw; k++) {
+                            System.out.print(j % 2 == 0 ? "-" : " ");
+                        }
+                    }
+                }
+                System.out.println();
+            }
+
+            // print line of numbers
+            for (int j = 0; j < line.size(); j++) {
+
+                String f = line.get(j);
+                if (f == null) f = "";
+                int gap1 = (int) Math.ceil(perpiece / 2f - f.length() / 2f);
+                int gap2 = (int) Math.floor(perpiece / 2f - f.length() / 2f);
+
+                // a number
+                for (int k = 0; k < gap1; k++) {
+                    System.out.print(" ");
+                }
+                System.out.print(f);
+                for (int k = 0; k < gap2; k++) {
+                    System.out.print(" ");
+                }
+            }
+            System.out.println();
+
+            perpiece /= 2;
+        }
+    }
 }

@@ -1,5 +1,6 @@
 package scjp.com.java.chapter6;
 
+// Write a line in between a file
 import java.io.File;
 import java.io.IOException;
 import java.io.RandomAccessFile;

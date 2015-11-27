@@ -1,4 +1,4 @@
-package scjp.com.java.chapter7;
+package scjp.com.java.aapractice;
 
 import java.util.Stack;
 

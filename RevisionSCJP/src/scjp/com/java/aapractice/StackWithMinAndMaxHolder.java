@@ -1,4 +1,4 @@
-package scjp.com.java.chapter7;
+package scjp.com.java.aapractice;
 
 import java.util.Stack;
 
@@ -8,7 +8,7 @@ public class StackWithMinAndMaxHolder
 
     public static void main( String[] args )
     {
-        int arr[] = { 32, 34, 12, 3, 6, 8, 123, 1 };
+        int arr[] = { 32, 34, 12, 3, 6, 8, 123, 1 ,2};
 
         stack.push( new StackObject( arr[ 0 ], arr[ 0 ], arr[ 0 ] ) );
         int value;
