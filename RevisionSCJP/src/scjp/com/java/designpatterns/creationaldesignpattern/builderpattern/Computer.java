@@ -29,6 +29,11 @@ public class Computer
         private boolean isGraphicsCardEnabled;
         private boolean isBluetoothEnabled;
 
+        public Computer build()
+        {
+          return new Computer( this );
+        }
+
         public ComputerBuilder( String hdd, String ram )
         {
             this.HDD = hdd;
@@ -45,11 +50,6 @@ public class Computer
         {
             this.isBluetoothEnabled = isBluetoothEnabled;
             return this;
-        }
-
-        public Computer build()
-        {
-            return new Computer( this );
         }
     }
 }

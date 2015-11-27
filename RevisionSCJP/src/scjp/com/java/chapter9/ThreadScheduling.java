@@ -68,6 +68,6 @@ class DemoRunnable implements Runnable
 	public void run()
 	{
 		System.out.println( this.toString() );
-		throw new RuntimeException( "Exception Throw" );
+		//throw new RuntimeException( "Exception Throw" );
 	}
 }

@@ -2,7 +2,7 @@ package scjp.com.java.aapractice;
 
 public class FindMissingNoInArithmeticProgression {
 
-  // An = A1 + (n-1)d Arithmetic progression formula
+  // An = A1 + (n-1)d  Arithmetic progression formula
   // An = A1 * r^(n-1) Geometric progression formula
   public static void main(String[] args) {
     int arr[] = {2, 4, 6, 8, 10, 12, 14, 16, 20, 22};

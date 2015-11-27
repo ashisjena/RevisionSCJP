@@ -11,6 +11,7 @@ public class MyTopic extends Observable
         this.message = message;
     }
     
+    @Override
     public void setChanged()
     {
         super.setChanged();

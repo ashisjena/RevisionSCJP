@@ -17,4 +17,4 @@ public class SingletonPatternLazyHolder
         if ( getInstance() != null )
             throw new RuntimeException( "Singleton object is already intitialized" );
     }
-}
+} 
