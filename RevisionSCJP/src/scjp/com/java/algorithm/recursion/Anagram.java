@@ -14,6 +14,7 @@ public class Anagram
 		System.out.println( values );
 		
 		doAnagram( str.length(), str.toCharArray() );
+		System.out.println();
 	}
 
 	public static void anagram( String prefix, String str, List<String> values )

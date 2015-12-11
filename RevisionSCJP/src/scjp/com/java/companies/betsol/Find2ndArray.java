@@ -1,34 +1,58 @@
-package scjp.com.java;
+package scjp.com.java.companies.betsol;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
-public class CleanAfterTest {
-    public static void main(String[] args) throws IOException {
-    StringBuilder result = new StringBuilder();
-    try (ConsoleReader reader = ConsoleReader.getInstance()) {
-      for (int i = reader.readInteger(); i > 0; i--) {
-        Long[] input = reader.readLineNSplitWithSpace(Long.class);
-        long a = input[0], b = input[1];
-        StringBuilder sb = new StringBuilder();
-        int count = 0;
-        while (b != 0)
-        {
-          if ((b & 1) != 0)
-          {
-            sb.insert(0, "(" + a + "<<" + count + ") + ");
-          }
+/*Today Oz is playing with two lists A and B. List A contains N elements. List B is formed by replacing every element of List A by average value of all elements before current element including current one. For example :
+If list A is like : a, b, c then
+list B will be like : a/1, (a+b)/2, (a+b+c)/3
+Now you are given list B and you have to find list A. So help Oz with this task.
 
-          b >>= 1;
-          count++;
-        }
-        result.append(sb.substring(0, sb.length() - 3) + System.lineSeparator());
+Input :
+First line contain an integer N - size of list B
+Second line contains N space separated integers - elements of list B
+
+Output :
+Output N space separated integers - elements of list A
+Test data is such that list A elements are always integers.
+
+Constraints :
+1 ≤ N ≤ 100
+1 ≤ value of each element ≤ 109
+Sample Input
+(Plaintext Link)
+
+4
+3 2 3 5
+
+Sample Output
+(Plaintext Link)
+
+3 1 5 11*/
+
+
+public class Find2ndArray {
+  public static void main(String[] args) throws Exception {
+    try(ConsoleReader reader = ConsoleReader.getInstance())
+    {
+      reader.readInteger();
+      Long[] inputArray = reader.readLineNSplitWithSpace(Long.class);
+      
+      int index = 1;
+      long prev = 0;
+      for(long val : inputArray)
+      {
+        System.out.print(val * index - prev * (index++ - 1));
+        System.out.print(" ");
+        prev = val;
       }
-    } catch (IOException e) {
+    }
+    catch(Exception e)
+    {
       throw e;
     }
-    System.out.println(result.toString());
+    
   }
 }
 
@@ -118,4 +142,3 @@ final class ConsoleReader implements AutoCloseable
         LazyHolder.INSTANCE = null;
     }
 }
-
