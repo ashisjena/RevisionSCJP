@@ -36,7 +36,7 @@ public class ThreadScheduling
 			for ( int i = 0; i < 2; i++ )
 			{
 				Future<String> future = cs.take();
-				System.out.println( future.get() ); // Here get is just to get the Sucess Value set by us.
+				System.out.println( future.get() ); // Here get is just to get the Success Value set by us.
 			}
 
 			System.out.println( "Shutting Down" );

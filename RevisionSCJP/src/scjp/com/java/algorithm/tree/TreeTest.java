@@ -13,7 +13,7 @@ public class TreeTest {
     Tree.print(root);
 
     System.out.println();
-    //preOrder(root);
+    preOrder(root);
     System.out.println();
     //postOrder(root);
     System.out.println();
@@ -22,8 +22,11 @@ public class TreeTest {
     //levelOrder(root);
 
     System.out.println();
-    //mirrorOfTree(root);
-    //BinaryTree.print(root);
+    mirrorOfTree(root);
+    Tree.print(root);
+    System.out.println(isNodePresent(root, 14));
+    System.out.println(findNode(root, 14).getData());
+    System.out.println(findNodeLoop(root, 14).getData());
   }
 
   static void mirrorOfTree(Tree<Integer> root) {
@@ -98,4 +101,49 @@ public class TreeTest {
       }
     }
   }
+  
+  static Tree<Integer> findNode(Tree<Integer> root, int data){
+	  if(root.getData() == null) {
+		  return null;
+	  }else {
+		  if(root.getData() == data) {
+			  return root;
+		  }else {
+			  Tree<Integer> result = findNode(root.getLeft(), data);
+			  if(result != null)
+			  	return result;
+			  else return findNode(root.getRight(), data);
+		  }
+	  }
+  }
+  
+	static Tree<Integer> findNodeLoop(Tree<Integer> root, int data) {
+		if (root != null) {
+			Queue<Tree<Integer>> q = new LinkedList<>();
+			// add root to the queue
+			q.add(root);
+			while (!q.isEmpty()) {
+				Tree<Integer> n = q.poll();
+				// check if current node has the element we are looking for
+
+				if(n.getData() == null) {
+					continue;
+				}
+				if (n.getData() == data) {
+					return n;
+				}
+				// add children to the queue
+				if (n.getLeft() != null) {
+					q.add(n.getLeft());
+				}
+				if (n.getRight() != null) {
+					q.add(n.getRight());
+				}
+			}
+			// if reached here, means we have not found the element
+			return null;
+		}
+		// if root is null, return false
+		return null;
+	}
 }
