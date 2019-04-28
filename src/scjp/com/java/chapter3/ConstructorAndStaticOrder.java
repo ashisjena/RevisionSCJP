@@ -6,47 +6,39 @@ public class ConstructorAndStaticOrder {
   }
 }
 
-
-class A
-{
-  static
-  {
+class A {
+  static {
     System.out.println("A.static_block()");
   }
-  
+
   {
     System.out.println("A.init_block()");
   }
-  
-  public A()
-  {
+
+  public A() {
     System.out.println("A.A()");
   }
 }
 
-class B extends A
-{
-  
-  static
-  {
+class B extends A {
+
+  static {
     System.out.println("B.static_block()");
   }
-  
+
   {
     System.out.println("B.init_block()");
   }
-  C c = new C();
-  
-  public B()
-  {
+
+  C c = new C();  // Order of execution between init block and Instance variable initialization.
+
+  public B() {
     System.out.println("B.B()");
   }
 }
 
-class C
-{
-  public C()
-  {
-    System.out.println("C.C(), C Refence is getting initialized");
+class C {
+  public C() {
+    System.out.println("C.C(), C Reference is getting initialized");
   }
 }

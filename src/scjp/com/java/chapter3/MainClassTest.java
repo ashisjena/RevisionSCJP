@@ -16,9 +16,8 @@ public class MainClassTest extends SuperClass
     {
         new MainClassTest();
         Short srt = 5;
-        test(srt);
-        //test1(srt);
-
+        test(srt); // This will invoke the method with primitive parameter
+//        test1(srt); // Short can't be applied to Integer
     }
     
     static void test(int i)
