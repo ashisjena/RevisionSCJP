@@ -1,6 +1,4 @@
-package scjp.com.java.chapterAnnotation;
-
-import java.lang.annotation.Annotation;
+package scjp.com.java.javaLanguageFeatures.chapterAnnotation;
 
 @Version(major = 1)
 @ChangeLog(date = "28-04-2019", comments = "This is a test comment")

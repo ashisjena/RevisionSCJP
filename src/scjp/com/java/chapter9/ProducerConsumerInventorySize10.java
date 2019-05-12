@@ -57,7 +57,7 @@ public class ProducerConsumerInventorySize10
 
         try
         {
-            Thread.sleep( 5000 );
+            Thread.sleep( 500 );
         }
         catch ( InterruptedException e )
         {

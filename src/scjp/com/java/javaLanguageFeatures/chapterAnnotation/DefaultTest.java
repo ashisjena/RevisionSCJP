@@ -1,4 +1,4 @@
-package scjp.com.java.chapterAnnotation;
+package scjp.com.java.javaLanguageFeatures.chapterAnnotation;
 
 import java.io.IOException;
 

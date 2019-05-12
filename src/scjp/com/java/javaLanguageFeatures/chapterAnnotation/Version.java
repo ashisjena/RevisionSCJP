@@ -1,8 +1,8 @@
-package scjp.com.java.chapterAnnotation;
+package scjp.com.java.javaLanguageFeatures.chapterAnnotation;
 
 import java.lang.annotation.*;
 
-@Target({ElementType.TYPE, ElementType.CONSTRUCTOR, ElementType.METHOD})
+@Target({ElementType.TYPE, ElementType.CONSTRUCTOR, ElementType.METHOD, ElementType.PACKAGE})
 @Retention(RetentionPolicy.RUNTIME)
 //@Inherited
 @Documented
