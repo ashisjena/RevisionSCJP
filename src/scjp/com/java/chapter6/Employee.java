@@ -34,4 +34,9 @@ public class Employee implements Serializable
         this.empName = empName;
     }
 
+    @Override
+    public String toString() {
+        return this.empName + ", id: " + this.empNo;
+    }
+
 }

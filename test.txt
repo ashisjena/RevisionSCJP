@@ -1,5 +1,2 @@
-I am a good boy
-Ram is a painter.
-Sita is a Teacher.
-Sita sings well.
-Django is a bad ass.
+Ram is a good boy.
+Shay is also a good boy.

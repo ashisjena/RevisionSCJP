@@ -86,7 +86,12 @@ public class LongestPalindromeManacherAlgo
 	// test client
 	public static void main( String[] args )
 	{
-		String s = args[0];
+//		if the given string is “forgeeksskeegfor”, the output should be “geeksskeeg”
+//		if the given string is “abaaba”, the output should be “abaaba”
+//		if the given string is “abababa”, the output should be “abababa”
+//		if the given string is “abcbabcbabcba”, the output should be “abcbabcba”
+
+		String s = "forgeeksskeegfor";
 		LongestPalindromeManacherAlgo manacher = new LongestPalindromeManacherAlgo( s );
 		System.out.println( manacher.longestPalindromicSubstring() );
 		for ( int i = 0; i < 2 * s.length(); i++ )

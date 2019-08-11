@@ -8,7 +8,7 @@ public class IntegerToBinary
 
 	public static void main( String[] args )
 	{
-		int i = 5;
+		int i = 5; // 101
 
 		List<Integer> lists = new ArrayList<Integer>();
 		for ( int len = 31; len >= 0; len-- )

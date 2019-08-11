@@ -74,7 +74,7 @@ public class FunctionUtilTest {
 
     // Instance and Class variable can be modified inside the lambda function.
 
-    Comparator<Person> lastFirstDobComp = Comparator.comparing(Person::getLastName).thenComparing(Person::getLastName).thenComparing(Person::getDob);
+    Comparator<Person> lastFirstDobComp = Comparator.comparing(Person::getLastName).thenComparing(Person::getFirstName).thenComparing(Person::getDob);
     list.sort(lastFirstDobComp);
 
     UnaryOperator<Integer> uo2 = m -> m + n++; // n is here the static variable

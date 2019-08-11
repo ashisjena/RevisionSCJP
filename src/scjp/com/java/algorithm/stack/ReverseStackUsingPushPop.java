@@ -2,42 +2,36 @@ package scjp.com.java.algorithm.stack;
 
 import java.util.Stack;
 
-public class ReverseStackUsingPushPop
-{
-	public static void main( String[] args )
-	{
-		Stack<Integer> stack = new Stack<Integer>();
+public class ReverseStackUsingPushPop {
+  public static void main(String[] args) {
+    Stack<Integer> stack = new Stack<Integer>();
 
-		for ( int i = 1; i < 5; i++ )
-			stack.push( i );
+    for (int i = 1; i < 5; i++)
+      stack.push(i);
 
-		reverseStack( stack );
+    reverseStackRecur(stack);
 
-		while ( !stack.isEmpty() )
-			System.out.println( stack.pop() );
-	}
+    while (!stack.isEmpty())
+      System.out.println(stack.pop());
+  }
 
-	private static void reverseStack( Stack<Integer> stack )
-	{
-		if ( stack.isEmpty() )
-			return;
+  private static <T extends Number> void reverseStackRecur(Stack<T> stack) {
+    if (stack.empty()) {
+      return;
+    }
+    T tempValue = stack.pop();
+    reverseStackRecur(stack);
+    insertAtBottomRecur(stack, tempValue);
+  }
 
-		int tempValue = stack.pop();
-		reverseStack( stack );
+  private static <T extends Number> void insertAtBottomRecur(Stack<T> stack, T value) {
+    if (stack.isEmpty()) {
+      stack.push(value);
+      return;
+    }
 
-		insertAtBottom( stack, tempValue );
-	}
-
-	private static void insertAtBottom( Stack<Integer> stack, int value )
-	{
-		if ( stack.isEmpty() )
-		{
-			stack.push( value );
-			return;
-		}
-
-		int tempValue = stack.pop();
-		insertAtBottom( stack, value );
-		stack.push( tempValue );
-	}
+    T tempValue = stack.pop();
+    insertAtBottomRecur(stack, value);
+    stack.push(tempValue);
+  }
 }

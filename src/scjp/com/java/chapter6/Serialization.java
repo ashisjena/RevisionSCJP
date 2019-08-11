@@ -15,17 +15,22 @@ public class Serialization {
     ObjectInputStream inputStream = new ObjectInputStream(new FileInputStream("stu.ser"));
     Student desStu = (Student) inputStream.readObject();
     System.out.println(desStu);
-    
+    inputStream.close();
+
+    inputStream = new ObjectInputStream(new FileInputStream("stu.ser"));
     Student des2 = (Student) inputStream.readObject();
-    if(des2 == desStu)
+    if (des2 == desStu) {
       System.out.println("hi");
+    } else if (des2.equals(desStu)) {
+      System.out.println("Hello");
+    }
     inputStream.close();
   }
 }
 
 
 class Student implements Serializable {
-  private static final long serialVersionUID = 1L;   
+  private static final long serialVersionUID = 1L;
   // If we change the serialization id and try to deserialize older version with different id, it will throw ClassCastException 
   int id;
   String name;
@@ -40,5 +45,14 @@ class Student implements Serializable {
   @Override
   public String toString() {
     return id + ", " + name + ", " + sal;
+  }
+
+  @Override
+  public boolean equals(Object obj) {
+    if (obj instanceof Student) {
+      Student stu = (Student) obj;
+      return this.id == stu.id && this.name.equals(stu.name) && this.sal == stu.sal;
+    }
+    return false;
   }
 }

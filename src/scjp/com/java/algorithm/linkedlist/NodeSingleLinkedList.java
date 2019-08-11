@@ -4,6 +4,13 @@ import java.util.Random;
 
 public class NodeSingleLinkedList<E>
 {
+	public static void main( String[] args )
+	{
+		NodeSingleLinkedList<Integer> linkedList = NodeSingleLinkedList.formLinkedList( 11, 1, 1 );
+		System.out.println( linkedList );
+	}
+
+
 	public final static NodeSingleLinkedList<Integer> DEMO_NODE = new NodeSingleLinkedList<Integer>( new Random().nextInt( Integer.MAX_VALUE ) + Integer.MIN_VALUE );
 
 	private E value;
