@@ -1,6 +1,5 @@
 package scjp.com.java.javaLanguageFeatures.chapterStreams;
 
-import org.joda.time.Period;
 import scjp.com.java.javaLanguageFeatures.chapterLambdaExpressions.Gender;
 import scjp.com.java.javaLanguageFeatures.chapterLambdaExpressions.Person;
 
