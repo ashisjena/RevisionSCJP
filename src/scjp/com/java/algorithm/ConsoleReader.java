@@ -2,14 +2,23 @@ package scjp.com.java.algorithm;
 
 import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.Arrays;
 import java.util.StringTokenizer;
 import java.util.stream.Stream;
 
 public class ConsoleReader implements AutoCloseable {
-    private final BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+    private final BufferedReader br;
     private StringTokenizer st;
+
+    public ConsoleReader() {
+        this.br = new BufferedReader(new InputStreamReader(System.in));
+    }
+
+    public ConsoleReader(InputStream in) {
+        this.br = new BufferedReader(new InputStreamReader(in));
+    }
 
     public String readLine() {
         try {

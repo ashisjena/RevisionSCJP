@@ -20,6 +20,7 @@ public class GraphTest {
 
         Stack<Integer> stack = graph.topologicalSort(1);
         System.out.println();
+        System.out.println("Topological Sort");
         while (!stack.isEmpty()) {
             System.out.print(stack.pop() + "  ");
         }
