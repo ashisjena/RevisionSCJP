@@ -1,40 +1,151 @@
 package scjp.com.java.algorithm.dynamicProgramming;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /*
-Little Bob comes to you for candies as you are his favorite coder! He wants X candies. You have N bags and the ith bag contains A[i] candies.
+Input : arr[] = {2, 3, 5, 6, 8, 10}
+        sum = 10
+Output : 5 2 3
+         2 8
+         10
 
-You can give him a set of one or more bags such that the sum of candies in those bags is EXACTLY equal to X. Bob wants to find smallest such set of bags. If there are multiple smallest such sets than Bob wants the lexicographically smallest set of such bags.
+Input : arr[] = {1, 2, 3, 4, 5}
+        sum = 10
+Output : 4 3 2 1
+         5 3 2
+         5 4 1
 
-See the sample test cases for more clarity.
-
-Input:
-The first line contains two space-separated integers N and X.
-The second line contains N integers, the number of candies in each bag.
-
-Output:
-Print the indices of the bags that you give to Bob. If it is not possible to form such a set, print -1.
-
-Constraints:
-1 ≤ N ≤ 20
-1 ≤ X ≤ 106
-1 ≤ A[i] ≤ 106
-
-SAMPLE INPUT
-6 9
-5 7 1 4 4 1
-SAMPLE OUTPUT
-1 4
-Explanation
-There are 3 such sets possible whose sum is 9 :
-1 (5) + 4 (4) = 9
-1 (5) + 5 (4) = 9
-2 (7) + 3 (1) + 6 (1) = 9
-Now in the 3rd set there are 3 bags being given but in 1st and 2nd set we can give 2 bags which is less than 3. We don't allot 2nd set because for the second set bags allocated will be 1 and 5 which is lexicographically larger than 1 and 4 in the case of 1st set.
+https://www.youtube.com/watch?v=K20Tx8cdwYY
  */
 
 public class PerfectSum {
-    public static void main(String[] args) {
-        int[] arr = {5, 7, 1, 4, 4, 1};
-        
+  public static void main(String[] args) {
+
+    int arr[] = {1, 2, 3, 4, 5};
+    boolean[][] dp = perfectSum(arr, 10);
+    System.out.println();
+    dp = printAllSubsets(arr, 10);
+    printSubsetsRec(arr, arr.length - 1, 10, new ArrayList<>(), dp);
+    // printSubset(dp, arr, 10);
+  }
+
+  static void printSubsetsRec(int arr[], int i, int remainingSum, ArrayList<Integer> list, boolean[][] dp) {
+    // If we reached end and sum is non-zero. We print
+    // list[] only if arr[0] is equal to sum OR dp[0][sum]
+    // is true.
+    if (i == 0 && remainingSum != 0 && dp[0][remainingSum]) {
+      list.add(arr[i]);
+      System.out.println(list);
+      list.clear();
+      return;
     }
+
+    // If sum becomes 0
+    if (i == 0 && remainingSum == 0) {
+      System.out.println(list);
+      list.clear();
+      return;
+    }
+
+    // If given sum can be achieved after ignoring
+    // current element.
+    if (dp[i - 1][remainingSum]) {
+      // Create a new list to store path
+      ArrayList<Integer> b = new ArrayList<>();
+      b.addAll(list);
+      printSubsetsRec(arr, i - 1, remainingSum, b, dp);
+    }
+
+    // If given sum can be achieved after considering
+    // current element.
+    if (remainingSum >= arr[i] && dp[i - 1][remainingSum - arr[i]]) {
+      list.add(arr[i]);
+      printSubsetsRec(arr, i - 1, remainingSum - arr[i], list, dp);
+    }
+  }
+
+  public static boolean[][] printAllSubsets(int[] arr, int totalSum) {
+    int n = arr.length;
+    if (n == 0 || totalSum < 0) {
+      return new boolean[0][0];
+    }
+
+    boolean dp[][] = new boolean[n][totalSum + 1];
+    // Set the first column as true.
+    for (int i = 0; i < n; i++) {
+      dp[i][0] = true;
+
+    }
+
+    // Sum with value arr[0] can be achieved with single element i.e arr[0].
+    if (arr[0] <= totalSum) {
+      dp[0][arr[0]] = true;
+    }
+
+    for (int i = 1; i < n; i++) {
+      for (int sum = 0; sum < totalSum + 1; sum++) {
+        dp[i][sum] = (arr[i] <= sum) ?
+                (dp[i - 1][sum] || dp[i - 1][sum - arr[i]])
+                : dp[i - 1][sum];
+      }
+    }
+
+    PrintMatrix.print(dp);
+    return dp;
+  }
+
+  public static boolean[][] perfectSum(int[] arr, int totalSum) {
+    boolean[][] dp = new boolean[arr.length][totalSum + 1]; // Memoization table
+
+    // Set the first column as true. As by excluding all we can form a sum with value 0.
+    for (int i = 0; i < arr.length; i++) {
+      dp[i][0] = true;
+    }
+
+    // Sum with value arr[0] can be achieved with single element i.e arr[0].
+    if (arr[0] <= totalSum) {
+      dp[0][arr[0]] = true;
+    }
+
+    for (int i = 1; i < arr.length; i++) {
+      for (int sum = 0; sum <= totalSum; sum++) {
+
+        if (arr[i] > sum) {
+          dp[i][sum] = dp[i - 1][sum];
+        } else if (arr[i] == sum) {
+          dp[i][sum] = true;
+        } else {
+          int remainingSum = sum - arr[i];
+          dp[i][sum] = dp[i - 1][remainingSum]; // Check if we can form the remaining Sum with previous values.
+        }
+      }
+    }
+    PrintMatrix.print(dp);
+    return dp;
+  }
+
+  public static void printSubset(boolean[][] dp, int[] arr, int totalSum) {
+    for (int i = 0; i < dp.length; i++) {
+      List<Integer> list = new ArrayList<>();
+      if (dp[i][totalSum] == true) {
+        if (arr[i] == totalSum) {
+          list.add(arr[i]);
+        } else {
+          int j = i;
+          int remainingSum = totalSum;
+          while (remainingSum > 0) {
+            while (j >= 0 && dp[j][remainingSum] == true) {
+              j--;
+            }
+            list.add(arr[j + 1]);
+            remainingSum = remainingSum - arr[j + 1];
+          }
+        }
+
+        System.out.println(list);
+      }
+    }
+  }
+
 }

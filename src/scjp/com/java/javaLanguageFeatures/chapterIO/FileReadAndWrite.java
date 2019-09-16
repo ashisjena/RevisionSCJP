@@ -21,7 +21,6 @@ public class FileReadAndWrite {
       System.out.println(System.lineSeparator() + baos.toString());
       baos.close();
     } catch (IOException e) {
-
       e.printStackTrace();
     }
   }
