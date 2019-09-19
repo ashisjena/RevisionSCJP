@@ -1,4 +1,4 @@
-package scjp.com.java.patternSearching;
+package scjp.com.java.algorithm.patternSearching;
 
 /*1) Input:
   txt[] =  "THIS IS A TEST TEXT"

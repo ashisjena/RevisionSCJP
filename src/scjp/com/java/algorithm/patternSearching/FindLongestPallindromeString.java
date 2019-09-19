@@ -1,4 +1,4 @@
-package scjp.com.java.patternSearching;
+package scjp.com.java.algorithm.patternSearching;
 
 import java.util.Arrays;
 

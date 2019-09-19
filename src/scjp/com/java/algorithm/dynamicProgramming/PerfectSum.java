@@ -1,7 +1,6 @@
 package scjp.com.java.algorithm.dynamicProgramming;
 
 import java.util.ArrayList;
-import java.util.List;
 
 /*
 Input : arr[] = {2, 3, 5, 6, 8, 10}
@@ -25,9 +24,8 @@ public class PerfectSum {
     int arr[] = {1, 2, 3, 4, 5};
     boolean[][] dp = perfectSum(arr, 10);
     System.out.println();
-    dp = printAllSubsets(arr, 10);
+    dp = perfectSum2(arr, 10);
     printSubsetsRec(arr, arr.length - 1, 10, new ArrayList<>(), dp);
-    // printSubset(dp, arr, 10);
   }
 
   static void printSubsetsRec(int arr[], int i, int remainingSum, ArrayList<Integer> list, boolean[][] dp) {
@@ -65,7 +63,7 @@ public class PerfectSum {
     }
   }
 
-  public static boolean[][] printAllSubsets(int[] arr, int totalSum) {
+  public static boolean[][] perfectSum2(int[] arr, int totalSum) {
     int n = arr.length;
     if (n == 0 || totalSum < 0) {
       return new boolean[0][0];
@@ -75,7 +73,6 @@ public class PerfectSum {
     // Set the first column as true.
     for (int i = 0; i < n; i++) {
       dp[i][0] = true;
-
     }
 
     // Sum with value arr[0] can be achieved with single element i.e arr[0].
@@ -84,7 +81,7 @@ public class PerfectSum {
     }
 
     for (int i = 1; i < n; i++) {
-      for (int sum = 0; sum < totalSum + 1; sum++) {
+      for (int sum = 0; sum <= totalSum; sum++) {
         dp[i][sum] = (arr[i] <= sum) ?
                 (dp[i - 1][sum] || dp[i - 1][sum - arr[i]])
                 : dp[i - 1][sum];
@@ -103,7 +100,7 @@ public class PerfectSum {
       dp[i][0] = true;
     }
 
-    // Sum with value arr[0] can be achieved with single element i.e arr[0].
+    // Sum with value arr[0]/1st element can be achieved with single element i.e arr[0]/1st Element.
     if (arr[0] <= totalSum) {
       dp[0][arr[0]] = true;
     }
@@ -125,11 +122,11 @@ public class PerfectSum {
     return dp;
   }
 
-  public static void printSubset(boolean[][] dp, int[] arr, int totalSum) {
+/*  public static void printSubset(boolean[][] dp, int[] arr, int totalSum) {
     for (int i = 0; i < dp.length; i++) {
       List<Integer> list = new ArrayList<>();
       if (dp[i][totalSum] == true) {
-        if (arr[i] == totalSum) {
+        if (arr[i] == totalSum) { // If sum can be formed using only one element then add that element.
           list.add(arr[i]);
         } else {
           int j = i;
@@ -146,6 +143,6 @@ public class PerfectSum {
         System.out.println(list);
       }
     }
-  }
+  }*/
 
 }

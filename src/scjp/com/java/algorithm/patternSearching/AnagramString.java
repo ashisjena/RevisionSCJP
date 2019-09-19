@@ -1,11 +1,8 @@
-package scjp.com.java.patternSearching;
+package scjp.com.java.algorithm.patternSearching;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.LinkedList;
 import java.util.List;
-
-import javax.print.attribute.standard.PrinterMoreInfoManufacturer;
 
 public class AnagramString
 {

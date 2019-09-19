@@ -1,7 +1,6 @@
-package scjp.com.java.patternSearching;
+package scjp.com.java.algorithm.patternSearching;
 
-import java.util.Arrays;
-// Manacher’s Algorithm
+// Manacherï¿½s Algorithm
 /*1) Input:  txt[] = "BACDGABCDA"  pat[] = "ABCD"
 Output:   Found at Index 0
           Found at Index 5

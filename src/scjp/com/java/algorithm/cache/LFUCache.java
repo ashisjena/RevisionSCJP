@@ -1,4 +1,4 @@
-package scjp.com.java.algorithm.aapractice;
+package scjp.com.java.algorithm.cache;
 
 import java.util.Collection;
 import java.util.HashMap;
@@ -194,6 +194,31 @@ public class LFUCache<Key, Value> implements Map<Key, Value> {
       this.v = v;
       this.frequency = frequency;
     }
+
+  }
+
+  public static void main(String[] args) {
+    LFUCache<String, String> cache = new LFUCache(5, .2f);
+
+    cache.put("ram", "raja");
+    cache.put("sita", "maiya");
+    cache.put("ravan", "king");
+    cache.put("laxman", "bro");
+    cache.put("hanuman", "powerful");
+    cache.get("sita");
+    cache.get("sita");
+    cache.get("laxman");
+    cache.get("hanuman");
+    cache.get("hanuman");
+    cache.get("hanuman");
+    cache.get("hanuman");
+    cache.get("hanuman");
+    cache.get("hanuman");
+    cache.get("ram");
+    cache.get("ram");
+    cache.get("ram");
+    cache.get("ravan");
+    cache.put("dasharath", "king");
 
   }
 }

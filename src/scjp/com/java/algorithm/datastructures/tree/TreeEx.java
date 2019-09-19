@@ -108,8 +108,8 @@ public class TreeEx {
     stack1.push(node);
     Stack<Node<T>> stack2 = new Stack<>();
 
-    while(!stack1.isEmpty() || !stack2.isEmpty()) {
-      while(!stack1.isEmpty()) {
+    while (!stack1.isEmpty() || !stack2.isEmpty()) {
+      while (!stack1.isEmpty()) {
         Node<T> n = stack1.pop();
 
         System.out.print(n.getValue() + "  ");
@@ -121,14 +121,14 @@ public class TreeEx {
         }
       }
 
-      while(!stack2.isEmpty()) {
+      while (!stack2.isEmpty()) {
         Node<T> n = stack2.pop();
 
         System.out.print(n.getValue() + "  ");
-        if(n.getLeft() != null) {
+        if (n.getLeft() != null) {
           stack1.push(n.getLeft());
         }
-        if(n.getRight() != null) {
+        if (n.getRight() != null) {
           stack1.push(n.getRight());
         }
       }
@@ -215,6 +215,19 @@ public class TreeEx {
     }
   }
 
+  public boolean isSymmetric(Node node) {
+    return isMirror(node, node);
+  }
+
+  private boolean isMirror(Node node1, Node node2) {
+    if (node1 == null && node2 == null) {
+      return true;
+    } else if (node1 != null && node2 != null && node1.getValue() == node2.getValue()) {
+      return isMirror(node1.getLeft(), node2.getRight()) && isMirror(node1.getRight(), node2.getLeft());
+    } else {
+      return false;
+    }
+  }
 
   public static <T extends Comparable<T>> void print(Node<T> root) {
     List<List<String>> lines = new ArrayList<>();
