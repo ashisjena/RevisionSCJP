@@ -1,4 +1,4 @@
-package scjp.com.java.chapter7;
+package scjp.com.java.algorithm.datastructures.sorting;
 
 import java.util.LinkedList;
 

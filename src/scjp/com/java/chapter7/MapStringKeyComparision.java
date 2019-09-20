@@ -16,10 +16,6 @@ public class MapStringKeyComparision
         hashMap.put( "Gita", 5 );
         
         String name = "Rama";
-        for(Map.Entry< String, Integer > entry : hashMap.entrySet())
-        {
-            if(name.equals( entry.getKey() ))
-                System.out.println(entry.getKey() + ", " + entry.getValue());
-        }
+        System.out.println(hashMap.get("Rama"));
     }
 }

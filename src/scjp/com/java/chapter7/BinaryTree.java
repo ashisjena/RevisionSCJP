@@ -11,6 +11,7 @@ import java.util.Iterator;
  * doubly linked, with parent and child references.  Many characteristics
  * of trees may be detected with static methods.
  */
+@Deprecated
 public class BinaryTree<E>
 {
     E val;

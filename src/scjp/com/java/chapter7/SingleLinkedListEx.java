@@ -1,5 +1,6 @@
 package scjp.com.java.chapter7;
 
+@Deprecated
 public class SingleLinkedListEx
 {
 
@@ -9,7 +10,7 @@ public class SingleLinkedListEx
     }
 
 }
-
+@Deprecated
 class SingleyLinkedList<E> implements ILinkedList< E >
 {
     protected int countOfElements;
@@ -179,6 +180,7 @@ class SingleyLinkedList<E> implements ILinkedList< E >
     }
 }
 
+@Deprecated
 class Node<G> implements Comparable< Node<G> >
 {
     private G data;

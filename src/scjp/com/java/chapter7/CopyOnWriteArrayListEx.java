@@ -36,7 +36,7 @@ class T1 implements Runnable
 	public void run()
 	{
 		final List<Integer> list = this.list;
-		list.set( 4, 10 );
+		list.set( 4, 999 );
 		System.out.println("Set");
 	}
 }

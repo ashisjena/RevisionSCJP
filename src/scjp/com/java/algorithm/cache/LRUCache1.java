@@ -1,16 +1,14 @@
 package scjp.com.java.algorithm.cache;
 
-import java.util.Deque;
-import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.Map;
+import java.util.*;
+import java.util.stream.Stream;
 
-public class LRUCache<K extends Comparable, V> {
+public class LRUCache1<K extends Comparable, V> {
   private Map<K, V> cache = new HashMap<>();
   private Deque<K> queue = new LinkedList<>();
   private int maxCacheSize;
 
-  public LRUCache(int maxCacheSize) {
+  public LRUCache1(int maxCacheSize) {
     this.maxCacheSize = maxCacheSize;
   }
 
@@ -21,6 +19,10 @@ public class LRUCache<K extends Comparable, V> {
     }
     cache.put(key, value);
     queue.offer(key);
+
+    ArrayList a = new ArrayList();
+
+    a.stream();
   }
 
   public V get(K key) {
@@ -37,23 +39,7 @@ public class LRUCache<K extends Comparable, V> {
     }
   }
 
-  public static void main(String[] args) {
-    LRUCache<String, String> cache = new LRUCache<>(5);
-
-    cache.put("ram", "raja");
-    cache.put("sita", "maiya");
-    cache.put("ravan", "king");
-    cache.put("laxman", "bro");
-    cache.put("hanuman", "powerful");
-    cache.get("sita");
-    cache.get("hanuman");
-    cache.get("ram");
-    cache.get("sita");
-    cache.get("laxman");
-    cache.get("ram");
-    cache.get("hanuman");
-    cache.get("ram");
-    cache.get("ravan");
-    cache.put("dasharath", "king");
+  public Stream<Map.Entry<K, V>> stream() {
+    return this.cache.entrySet().stream();
   }
 }
