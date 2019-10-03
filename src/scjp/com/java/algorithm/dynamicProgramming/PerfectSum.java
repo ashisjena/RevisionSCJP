@@ -83,7 +83,7 @@ public class PerfectSum {
     for (int i = 1; i < n; i++) {
       for (int sum = 0; sum <= totalSum; sum++) {
         dp[i][sum] = (arr[i] <= sum) ?
-                (dp[i - 1][sum] || dp[i - 1][sum - arr[i]])
+                (dp[i - 1][sum] || dp[i - 1][sum - arr[i]]) // If sum - arr[i] is true them adding the current value arr[i] will be the sum.
                 : dp[i - 1][sum];
       }
     }

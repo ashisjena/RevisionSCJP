@@ -27,7 +27,7 @@ public class SingleLinkedListEx {
     System.out.println("=============================");
 
     Node<String> cyclicLinkedList = Node
-        .toCyclicLinkedList(new String[]{"Ram", "Sita", "Laxman", "Ravan", "Hanuman", "Dasharath", "Kaikeyee"});
+            .toCyclicLinkedList(new String[]{"Ram", "Sita", "Laxman", "Ravan", "Hanuman", "Dasharath", "Kaikeyee"});
     System.out.println("Is Cyclic : " + Node.isCyclic(cyclicLinkedList));
     Node<String>[] resultArr = Node.splitCyclicLinkedList(cyclicLinkedList);
     Node.print(resultArr[0]);
@@ -40,7 +40,13 @@ public class SingleLinkedListEx {
 
     Node.print(Node.mergeSortedLinkedListRec(list1, list2));
 //    Node.print(Node.mergeSortedLinkedList(list1, list2, Comparator.naturalOrder()));
+
+    Node<Integer> l1 = Node.toLinkedList(new Integer[]{4, 5, 6});
+    Node<Integer> l2 = Node.toLinkedList(new Integer[]{5, 5});
+    Node.print(Node.sumLinkedLists(l1, l2));
   }
+
+
 }
 
 class Node<E> {
@@ -77,26 +83,14 @@ class Node<E> {
   }
 
   public static <T> Node<T> toLinkedList(T[] values) {
-    Node<T> head = new Node<>(values[0]);
-    Node<T> finger = head;
-
-    for (T value : Stream.of(values)
-                         .skip(1)
-                         .collect(Collectors.toList())) {
-      finger = finger.insert(value);
-    }
-    return head;
+    LinkedList<T> linkedList = new LinkedList<T>(values).invoke();
+    return linkedList.getHead();
   }
 
   public static <T> Node<T> toCyclicLinkedList(T[] values) {
-    Node<T> head = new Node<>(values[0]);
-    Node<T> finger = head;
-
-    for (T value : Stream.of(values)
-                         .skip(1)
-                         .collect(Collectors.toList())) {
-      finger = finger.insert(value);
-    }
+    LinkedList<T> linkedList = new LinkedList<>(values).invoke();
+    Node<T> head = linkedList.getHead();
+    Node<T> finger = linkedList.getTail();
     finger.setNext(head);
     return head;
   }
@@ -113,6 +107,30 @@ class Node<E> {
     }
     printReverse(linkedList.getNext());
     System.out.println(linkedList.getValue());
+  }
+
+  public static Node<Integer> sumLinkedLists(Node<Integer> l1, Node<Integer> l2) {
+    l1 = reverseLinkedListRec(l1, null);
+    l2 = reverseLinkedListRec(l2, null);
+
+    Node<Integer> finger1 = l1, finger2 = l2;
+    int carry = 0;
+    while (finger1 != null && finger2 != null) {
+      int sum = finger1.value + finger2.value + carry;
+      carry = sum / 10;
+      finger1.value = sum % 10;
+
+      finger1 = finger1.next;
+      finger2 = finger2.next;
+    }
+
+    if (finger1 == null) {
+      finger2.value += carry;
+      return reverseLinkedListRec(l2, null);
+    } else {
+      finger1.value += carry;
+      return reverseLinkedListRec(l1, null);
+    }
   }
 
   public static <T> Node<T> findNthElementFromEnd(Node<T> head, int n) {
@@ -190,7 +208,7 @@ class Node<E> {
     while (fastPointer != null && fastPointer.getNext() != null) {
       slowPointer = slowPointer.getNext();
       fastPointer = fastPointer.getNext()
-                               .getNext();
+              .getNext();
       if (slowPointer == fastPointer) {
         isCyclic = true;
         break;
@@ -208,7 +226,7 @@ class Node<E> {
 
     Node<T> result;
     if (list1.getValue()
-             .compareTo(list2.getValue()) < 0) {
+            .compareTo(list2.getValue()) < 0) {
       result = list1;
       result.setNext(mergeSortedLinkedListRec(list1.getNext(), list2));
     } else {
@@ -256,7 +274,7 @@ class Node<E> {
     }
     Node<T> turtle = head.getNext();
     Node<T> hare = head.getNext()
-                       .getNext();
+            .getNext();
 
     Node<T> turtlePrev = null, harePrev = null;
     while (hare != head) {
@@ -264,7 +282,7 @@ class Node<E> {
       turtle = turtle.getNext();
       harePrev = hare.getNext();
       hare = hare.getNext()
-                 .getNext();
+              .getNext();
     }
     if (turtle == hare) {
       return result; // If Odd number length
@@ -275,6 +293,36 @@ class Node<E> {
     result[0] = head;
     result[1] = turtle;
     return result;
+  }
+
+  private static class LinkedList<T> {
+    private T[] values;
+    private Node<T> head;
+    private Node<T> tail;
+
+    public LinkedList(T... values) {
+      this.values = values;
+    }
+
+    public Node<T> getHead() {
+      return head;
+    }
+
+    public Node<T> getTail() {
+      return tail;
+    }
+
+    public LinkedList invoke() {
+      head = new Node<>(values[0]);
+      tail = head;
+
+      for (T value : Stream.of(values)
+              .skip(1)
+              .collect(Collectors.toList())) {
+        tail = tail.insert(value);
+      }
+      return this;
+    }
   }
 }
 
