@@ -7,7 +7,8 @@ import java.util.stream.Collectors;
 public class QuickSort {
 
   public static void main(String[] args) {
-    int[] arr = {3, 2, 4, 65, 32, 8, 9};
+//    int[] arr = {3, 2, 4, 65, 32, 8, 9};
+    int[] arr = {3, 7, 6, 9, 1, 8, 10, 4, 2, 5};
     quickSort(arr, 0, arr.length - 1);
     System.out.println(Arrays.stream(arr).boxed().collect(Collectors.toList()));
   }
@@ -29,6 +30,9 @@ public class QuickSort {
       if (arr[j] <= pivot) {
         i++; // move i to right
         swap(arr, i, j);
+        /*if(i < j) {
+          swap(arr, i, j);
+        }*/
       }
     }
     swap(arr, i + 1, right); // swap i + 1 with pivot index, as left to i + 1 are less than pivot.
