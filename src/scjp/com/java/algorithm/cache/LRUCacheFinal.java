@@ -7,7 +7,7 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.stream.Stream;
 
-public class LRUCache2<K, V> {
+public class LRUCacheFinal<K, V> {
 
   private final int maxCacheSize;
   private LinkedHashMap<K, V> cache;
@@ -43,7 +43,7 @@ public class LRUCache2<K, V> {
     */
   }
 
-  public LRUCache2(int maxCacheSize) {
+  public LRUCacheFinal(int maxCacheSize) {
     this.maxCacheSize = maxCacheSize;
     this.cache = new LinkedHashMap<>();
   }

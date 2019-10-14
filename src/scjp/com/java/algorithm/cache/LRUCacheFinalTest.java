@@ -4,11 +4,11 @@ import org.junit.Test;
 
 import static org.junit.Assert.*;
 
-public class LRUCache2Test {
+public class LRUCacheFinalTest {
 
   @Test
   public void put() {
-    LRUCache2<String, String> cache = new LRUCache2<>(5);
+    LRUCacheFinal<String, String> cache = new LRUCacheFinal<>(5);
     cache.put("ram", "");
     cache.put("sita", "");
     cache.put("ravan", "");
@@ -24,7 +24,7 @@ public class LRUCache2Test {
 
   @Test
   public void get() {
-    LRUCache2<String, String> cache = new LRUCache2<>(5);
+    LRUCacheFinal<String, String> cache = new LRUCacheFinal<>(5);
     cache.put("ram", "");
     cache.put("sita", "");
     cache.put("ravan", "");

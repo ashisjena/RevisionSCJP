@@ -1,5 +1,6 @@
 package scjp.com.java.algorithm.aapractice;
 
+// https://searchcode.com/codesearch/view/31617137/
 public class FindCoinCounterfeiter {
 
 }

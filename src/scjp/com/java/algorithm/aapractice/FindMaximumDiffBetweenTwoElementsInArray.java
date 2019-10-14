@@ -2,20 +2,20 @@ package scjp.com.java.algorithm.aapractice;
 
 public class FindMaximumDiffBetweenTwoElementsInArray {
   public static void main(String[] args) {
-    int arr[] = {2, 3, -5, 5, 1, 50, 20};
+    int arr[] = {2, 3, -5, 5, 1, 50, -15, 20};
 
-    int max = 0;
-    int result = 0;
+    int max = Integer.MIN_VALUE;
+    int min = Integer.MAX_VALUE;
 
     for (int i = arr.length - 1; i >= 0; --i) {
       if (arr[i] > max)
         max = arr[i];
 
-      int tmpResult = Math.abs(max - arr[i]);
-      if (tmpResult > result)
-        result = tmpResult;
+      if (arr[i] < min) {
+        min = arr[i];
+      }
     }
-    
-    System.out.println(result);
+
+    System.out.println(max - min);
   }
 }
