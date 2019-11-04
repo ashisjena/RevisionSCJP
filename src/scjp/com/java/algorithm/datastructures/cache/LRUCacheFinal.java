@@ -1,4 +1,4 @@
-package scjp.com.java.algorithm.cache;
+package scjp.com.java.algorithm.datastructures.cache;
 
 import java.lang.reflect.Field;
 import java.security.AccessController;
