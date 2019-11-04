@@ -1,14 +1,14 @@
-package scjp.com.java.algorithm.cache;
+package scjp.com.java.algorithm.datastructures.cache;
 
 import org.junit.Test;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertArrayEquals;
 
-public class LRUCacheFinalTest {
+public class LRUCache1Test {
 
   @Test
   public void put() {
-    LRUCacheFinal<String, String> cache = new LRUCacheFinal<>(5);
+    LRUCache1<String, String> cache = new LRUCache1<>(5);
     cache.put("ram", "");
     cache.put("sita", "");
     cache.put("ravan", "");
@@ -24,7 +24,7 @@ public class LRUCacheFinalTest {
 
   @Test
   public void get() {
-    LRUCacheFinal<String, String> cache = new LRUCacheFinal<>(5);
+    LRUCache1<String, String> cache = new LRUCache1<>(5);
     cache.put("ram", "");
     cache.put("sita", "");
     cache.put("ravan", "");
