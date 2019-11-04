@@ -5,75 +5,96 @@ import java.util.Map;
 import java.util.Stack;
 
 public class MinStackMaxStack {
-	private Map<String, Integer> map = new HashMap<>();
-	private Stack<Node> minStack = new Stack<>();
-	private Stack<Node> maxStack = new Stack<>();
+  private Map<String, Integer> map = new HashMap<>();
+  private Stack<Node> maxStack = new Stack<>();
+  private Stack<Node> minStack = new Stack<>();
 
-	public void touchAndIncrease(String key) {
-		Integer count = map.get(key);
+  public void touchAndIncrease(String key) {
+    Integer count = map.get(key);
 
-		if (count == null) {
-			map.put(key, 1);
-		} else {
-			map.put(key, count + 1);
-		}
+    if (count == null) {
+      count = 0;
+    }
+    map.put(key, count + 1);
 
-		if (maxStack.peek().count <= count + 1) {
-			maxStack.push(new Node(key, count + 1));
-		}
-	}
+    if (maxStack.isEmpty()) {
+      maxStack.push(new Node(key, count + 1));
+    } else if(maxStack.peek().key.equals(key)) {
+      maxStack.peek().count = count + 1;
+    } else if(maxStack.peek().count <= count + 1) {
+      maxStack.push(new Node(key, count + 1));
+    }
 
-	public void touchAndDecrease(String key) {
-		Integer count = map.get(key);
+    if (!minStack.isEmpty() && minStack.peek().key.equals(key)) {
+      minStack.pop();
+    }
+    if (minStack.isEmpty() || minStack.peek().count >= count + 1) {
+      minStack.push((new Node(key, count + 1)));
+    }
+  }
 
-		if (count != null) {
-			map.put(key, count - 1);
+  public void touchAndDecrease(String key) {
+    Integer count = map.get(key);
 
-			if (minStack.peek().count >= count - 1) {
-				minStack.push(new Node(key, count + 1));
-			}
-		}
+    if (count != null) {
+      map.put(key, count - 1);
 
-	}
+      if (minStack.isEmpty() || minStack.peek().count >= count - 1) {
+        minStack.push(new Node(key, count - 1));
+      }
+      if (!maxStack.isEmpty() || maxStack.peek().key.equals(key)) {
+        maxStack.pop();
+      }
+      if (maxStack.isEmpty() || maxStack.peek().count <= count - 1) {
+        maxStack.push(new Node(key, count - 1));
+      }
+    }
 
-	public Node getMaxNode() {
-		return this.maxStack.peek();
-	}
+  }
 
-	public Node getMinNode() {
-		return this.minStack.peek();
-	}
+  public Node getMaxNode() {
+    return maxStack.isEmpty() ? null : this.maxStack.peek();
+  }
 
-	class Node {
-		private Integer count;
-		private String key;
+  public Node getMinNode() {
+    return minStack.isEmpty() ? null : this.minStack.peek();
+  }
 
-		Node(String key, Integer count) {
-			this.key = key;
-			this.count = count;
-		}
+  class Node {
+    private Integer count;
+    private String key;
 
-		@Override
-		public String toString() {
-			return this.key + ", " + this.count;
-		}
-	}
+    Node(String key, Integer count) {
+      this.key = key;
+      this.count = count;
+    }
 
-	public static void main(String[] args) {
-		MinStackMaxStack obj = new MinStackMaxStack();
-		
-		obj.touchAndIncrease("Ram");
-		obj.touchAndIncrease("Sita");
-		obj.touchAndIncrease("Hari");
-		obj.touchAndIncrease("Shyam");
-		obj.touchAndIncrease("Hari");
-		obj.touchAndIncrease("Hari");
-		obj.touchAndIncrease("Hari");
-		obj.touchAndIncrease("Sita");
-		obj.touchAndIncrease("Sita");
-		
-		System.out.println(obj.getMaxNode());
-		System.out.println(obj.getMinNode());
-	}
+    @Override
+    public String toString() {
+      return this.key + ", " + this.count;
+    }
+  }
+
+  public static void main(String[] args) {
+    MinStackMaxStack obj = new MinStackMaxStack();
+
+    obj.touchAndIncrease("Ram");
+    obj.touchAndIncrease("Sita");
+    obj.touchAndIncrease("Hari");
+    obj.touchAndIncrease("Shyam");
+    obj.touchAndIncrease("Hari");
+    obj.touchAndIncrease("Hari");
+    obj.touchAndIncrease("Hari");
+    obj.touchAndIncrease("Sita");
+    obj.touchAndIncrease("Sita");
+
+    System.out.println(obj.getMaxNode());
+    System.out.println(obj.getMinNode());
+
+    obj.touchAndDecrease("Hari");
+    obj.touchAndDecrease("Hari");
+    System.out.println(obj.getMaxNode());
+    System.out.println(obj.getMinNode());
+  }
 
 }
