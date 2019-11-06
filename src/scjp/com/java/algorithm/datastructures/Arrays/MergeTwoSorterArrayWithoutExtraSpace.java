@@ -1,4 +1,4 @@
-package scjp.com.java.algorithm.hackerrank.InterviewPreparationKit.Arrays;
+package scjp.com.java.algorithm.datastructures.Arrays;
 
 import java.util.Arrays;
 

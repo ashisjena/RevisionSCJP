@@ -1,4 +1,4 @@
-package scjp.com.java.algorithm.hackerrank.InterviewPreparationKit.Arrays;
+package scjp.com.java.algorithm.datastructures.Arrays;
 
 // https://www.hackerrank.com/challenges/crush/problem
 // https://youtu.be/hDhf04AJIRs?t=1442

@@ -1,4 +1,4 @@
-package scjp.com.java.algorithm.hackerrank.InterviewPreparationKit.Dictionary;
+package scjp.com.java.algorithm.datastructures.dictionaries;
 
 import java.util.HashMap;
 import java.util.Map;

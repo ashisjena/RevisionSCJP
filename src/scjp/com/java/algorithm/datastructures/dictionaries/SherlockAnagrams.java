@@ -1,47 +1,37 @@
 package scjp.com.java.algorithm.datastructures.dictionaries;
 
+import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
 
-import scjp.com.java.algorithm.ConsoleReader;
-
 public class SherlockAnagrams {
-	public static void main(String[] args) {
-		try (ConsoleReader reader = new ConsoleReader()) {
-			final int noOfInputs = reader.readInt();
-			String[] inputs = new String[noOfInputs];
-			for (int i = 0; i < noOfInputs; i++) {
-				inputs[i] = reader.readLine();
-			}
+  public static void main(String[] args) {
+    String input = "kkkk";
+    int result = sherlockAndAnagrams(input);
+    System.out.println(result);
+  }
 
-			for (String input : inputs) {
-				int result = getNoOfPossibleAnagrams(input);
-				System.out.println(result);
-			}
-		}
-	}
+  static int sherlockAndAnagrams(String s) {
+    int result = 0;
+    char[] charArr = s.toCharArray();
+    for (int k = 0; k < charArr.length - 1; k++) {
+      final Set<String> uniqueSubStrings = new HashSet<>();
+      for (int i = k; i < charArr.length; i++) {
+        if (!uniqueSubStrings.add(Character.toString(charArr[i]))) {
+          result++;
+        }
 
-	private static int getNoOfPossibleAnagrams(String readLine) {
-		int result = 0;
-		char[] charArr = readLine.toCharArray();
-		Set<String> uniqueSubStrings = new HashSet<>();
-		for (int i = 0; i < charArr.length; i++) {
-			if (!uniqueSubStrings.add(Character.toString(charArr[i]))) {
-				result++;
-			}
-
-			for (int j = i + 1; j < charArr.length; j++) {
-				char[] destArr = new char[j - i + 1];
-				System.arraycopy(charArr, i, destArr, 0, j - i + 1);
-				String uniqueSubString = String.copyValueOf(destArr);
-				if (uniqueSubStrings.contains(new StringBuilder(uniqueSubString).reverse().toString())) {
-					result++;
-				} else {
-					uniqueSubStrings.add(uniqueSubString);
-				}
-			}
-		}
-
-		return result;
-	}
+        for (int j = i + 1; j < charArr.length; j++) {
+          char[] destArr = new char[j - i + 1];
+          System.arraycopy(charArr, i, destArr, 0, j - i + 1);
+          Arrays.sort(destArr);
+          String uniqueSubString = String.copyValueOf(destArr);
+          if (!uniqueSubStrings.add(uniqueSubString)) {
+            result++;
+          }
+        }
+      }
+    }
+    return result;
+  }
 }
