@@ -1,5 +1,7 @@
 package scjp.com.java.algorithm.datastructures.dictionaries;
 
+import org.jetbrains.annotations.NotNull;
+
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
@@ -22,16 +24,21 @@ public class SherlockAnagrams {
         }
 
         for (int j = i + 1; j < charArr.length; j++) {
-          char[] destArr = new char[j - i + 1];
-          System.arraycopy(charArr, i, destArr, 0, j - i + 1);
-          Arrays.sort(destArr);
-          String uniqueSubString = String.copyValueOf(destArr);
-          if (!uniqueSubStrings.add(uniqueSubString)) {
+          String subString = getString(charArr, j, i);
+          if (!uniqueSubStrings.add(subString)) {
             result++;
           }
         }
       }
     }
     return result;
+  }
+
+  @NotNull
+  private static String getString(char[] charArr, int j, int i) {
+    char[] destArr = new char[j - i + 1];
+    System.arraycopy(charArr, i, destArr, 0, j - i + 1);
+    Arrays.sort(destArr);
+    return String.copyValueOf(destArr);
   }
 }

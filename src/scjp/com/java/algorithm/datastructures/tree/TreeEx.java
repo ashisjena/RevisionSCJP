@@ -1,5 +1,6 @@
 package scjp.com.java.algorithm.datastructures.tree;
 
+import org.jetbrains.annotations.NotNull;
 import scjp.com.java.algorithm.datastructures.tree.avltree.AVLTree;
 import scjp.com.java.algorithm.datastructures.tree.redblacktree.RedBlackTree;
 
@@ -20,7 +21,7 @@ public class TreeEx {
         /*System.out.println(tree.delete(35));
         print(tree.getRoot());*/
 
-    Integer arr2[] = {40, 35, 20, 10, 45, 50, 65, 60};
+    Integer arr2[] = {40, 35, 20, 10, 5, 15, 45, 50};
     RedBlackTree<Integer> tree = new RedBlackTree<>();
     Arrays.stream(arr2).forEach(value -> tree.insert(value));
     print(tree.getRoot());
@@ -36,13 +37,22 @@ public class TreeEx {
         mirrorTreeLoop(avlTree.getRoot());
         print(avlTree.getRoot());
         */
+    System.out.println("PostOrder");
+    printPostOrder(avlTree.getRoot());
+    System.out.println("\nInOrder");
     printInOrderRecur(avlTree.getRoot());
-    System.out.println();
+    System.out.println("\nPreOrder");
+    printPreOrder(avlTree.getRoot());
     printLevelOrder(avlTree.getRoot());
     System.out.println();
     printLevelOrderInSpiralForm(avlTree.getRoot());
     System.out.println();
     printKDistanceFromNode(avlTree.findNode(75), 3);
+
+
+    Node<Integer> node = buildTreeFromPostOrderAndInOrder(new Integer[]{10, 20, 40, 50, 45, 35, 63, 68, 70, 65, 80, 90, 95, 85, 75, 60},
+            new Integer[]{10, 20, 35, 40, 45, 50, 60, 63, 65, 68, 70, 75, 80, 85, 90, 95});
+    print(node);
   }
 
   static <T extends Comparable> void printKDistanceFromNode(Node<T> node, int distance) {
@@ -144,6 +154,53 @@ public class TreeEx {
     printInOrderRecur(node.getRight());
   }
 
+  /*
+  PostOrder
+  10  20  40  50  45  35  63  68  70  65  80  90  95  85  75  60
+  InOrder
+  10  20  35  40  45  50  60  63  65  68  70  75  80  85  90  95
+  */
+  static <T extends Comparable> Node<T> buildTreeFromPostOrderAndInOrder(T[] postOrder, T[] inOrder) {
+    int n = postOrder.length;
+    Index pIndex = new Index(n - 1);
+    return buildTreeUtil(inOrder, postOrder, 0, n - 1, pIndex);
+  }
+
+  static <T extends Comparable> Node<T> buildTreeUtil(T[] in, T[] post, int iStart, int iEnd, Index pIndex) {
+    if (iStart > iEnd) {
+      return null;
+    }
+
+    Node<T> node = new Node<>(post[pIndex.index]);
+    pIndex.index--;
+
+    if (iStart != iEnd) {
+      int iIndex = findIndex(in, iStart, iEnd, node);
+      node.right = buildTreeUtil(in, post, iIndex + 1, iEnd, pIndex);
+      node.left = buildTreeUtil(in, post, iStart, iIndex - 1, pIndex);
+    }
+    return node;
+  }
+
+  @NotNull
+  static <T extends Comparable> Integer findIndex(T[] arr, int start, int end, Node<T> node) {
+    for (int i = start; i <= end; i++) {
+      if (node.getValue() == arr[i]) {
+        return i;
+      }
+    }
+    return 0;
+  }
+
+  // Index class is for pass by reference of Index.
+  static class Index {
+    int index;
+
+    public Index(int index) {
+      this.index = index;
+    }
+  }
+
   static <T extends Comparable> void printInOrderLoop(Node<T> node) {
     Stack<Node<T>> stack = new Stack<>();
 
@@ -175,8 +232,8 @@ public class TreeEx {
     if (node == null) {
       return;
     }
-    printPreOrder(node.getLeft());
-    printPreOrder(node.getRight());
+    printPostOrder(node.getLeft());
+    printPostOrder(node.getRight());
     System.out.print(node.getValue() + "  ");
   }
 

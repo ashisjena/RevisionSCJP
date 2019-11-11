@@ -1,0 +1,12 @@
+1. Define the state
+2. List out all the state transitions
+3. Implement a recursive solution
+4. Memoize
+5. Make it bottom up
+
+States:
+Set of parameters which define the state of the system. We need to choose least possible number of parameters.
+The values of the parameters reflect the consequence of a decision.
+
+Define the cost function which represent the state and its return is the cost that we are trying to optimize for.
+
