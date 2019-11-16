@@ -27,6 +27,10 @@ public class Heap {
     System.out.println();
     head = buildMaxHeap(arr);
     TreeEx.print(head);
+
+    int[] intArr = new int[]{3, 2, 1, 7, 8, 4, 10, 16, 12};
+    Node<Integer> minHeap = buildMinHeap(arr);
+    TreeEx.print(minHeap);
   }
 
   static Node<Integer> createHeapFromArray(int[] arr) {
@@ -52,7 +56,7 @@ public class Heap {
   static Node<Integer> buildMaxHeap(int[] arr) {
     // {1, 3, 5, 4, 6, 13, 10, 9, 8, 15, 17}
     // Total Nodes = 11
-    // Last Non-leaf node Index = (11 / 2) - 1 = 4. n/2-1
+    // Last Non-leaf node Index = (11 / 2) - 1 = 4. (n/2)-1
     // i.e To build the heap, heapify only the nodes {1, 3, 4, 5, 6}
 
     int startIndx = arr.length / 2 - 1;
@@ -62,6 +66,23 @@ public class Heap {
     }
 
     return createHeapFromArray(arr);
+  }
+
+  static Node<Integer> buildMinHeap(int[] arr) {
+    for (int i = 0; i < arr.length; i++) {
+      bubbleUp(arr, i);
+    }
+    return createHeapFromArray(arr);
+  }
+
+  private static void bubbleUp(int[] arr, int pos) {
+    int parentIdx = pos / 2;
+    int currentIdx = pos;
+    while (currentIdx > 0 && arr[parentIdx] > arr[currentIdx]) {
+      swap(arr, parentIdx, currentIdx);
+      currentIdx = parentIdx;
+      parentIdx = parentIdx / 2;
+    }
   }
 
   private static void heapify(int[] arr, int i) {
@@ -90,4 +111,5 @@ public class Heap {
     arr[i] = arr[j];
     arr[j] = swap;
   }
+
 }

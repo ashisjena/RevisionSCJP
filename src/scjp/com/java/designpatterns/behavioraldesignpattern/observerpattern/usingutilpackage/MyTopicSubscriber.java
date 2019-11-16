@@ -3,21 +3,15 @@ package scjp.com.java.designpatterns.behavioraldesignpattern.observerpattern.usi
 import java.util.Observable;
 import java.util.Observer;
 
-public class MyTopicSubscriber implements Observer
-{
-    private Object name;
-    private Observable observable;
+public class MyTopicSubscriber implements Observer {
+  private Object name;
 
-    public MyTopicSubscriber( Observable observable, String name )
-    {
-        this.name = name;
-        this.observable = observable;
-    }
+  public MyTopicSubscriber(String name) {
+    this.name = name;
+  }
 
-    @Override
-    public void update( Observable o, Object arg )
-    {
-        if ( this.observable == o )
-            System.out.println( name + ", " + arg + ", " );
-    }
+  @Override
+  public void update(Observable o, Object arg) {
+    System.out.println(name + ", " + arg + ", ");
+  }
 }
