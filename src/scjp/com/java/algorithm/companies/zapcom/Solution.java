@@ -18,64 +18,68 @@ public class Solution {
   }
 
   public static int largestMatrix(List<List<Integer>> arr) {
-    int result = 0;
-
+    int maxResult = 0;
 
     for (int i = 0; i < arr.size(); i++) {
       for (int j = 0; j < arr.size(); j++) {
-        if (arr.get(i).get(j) == 0) {
+        if (isPositionZero(arr, i, j)) {
           continue;
         }
 
-        int innerResult = 1;
-        Queue<Pair> queue = new LinkedList<>();
-        queue.offer(new Pair(i, j));
-        while (!queue.isEmpty()) {
-          LinkedHashSet<Pair> set = new LinkedHashSet<>();
-          while (!queue.isEmpty()) {
-            Pair pair = queue.poll();
+        int resultForCurrPos = resultForCurrPosition(arr, i, j);
 
-            List<Pair> adjPairs = getAdjacentValues(pair, arr.size());
-
-            if (adjPairs.size() == 3) {
-              boolean hasZeros = adjPairs.stream().anyMatch(p -> arr.get(p.x).get(p.y) == 0);
-              if (!hasZeros) {
-                set.addAll(adjPairs);
-              }
-            }
-          }
-          int k = 0;
-          for (int x = 0; x <= innerResult + 1; x++) {
-            k += x;
-          }
-
-          if (set.size() == k) {
-            queue.addAll(set);
-            innerResult++;
-          }
-        }
-
-        if (result < innerResult) {
-          result = innerResult;
+        if (maxResult < resultForCurrPos) {
+          maxResult = resultForCurrPos;
         }
       }
     }
 
-
-    return result;
-
+    return maxResult;
   }
 
-  static List<Pair> getAdjacentValues(Pair pair, int n) {
+  private static int resultForCurrPosition(List<List<Integer>> arr, int i, int j) {
+    int result = 1;
+    Queue<Pair> queue = new LinkedList<>();
+    queue.offer(new Pair(i, j));
+
+    outer:
+    while (!queue.isEmpty()) {
+      LinkedHashSet<Pair> uniquePairs = new LinkedHashSet<>();
+      while (!queue.isEmpty()) {
+        Pair pair = queue.poll();
+        List<Pair> adjPairs = getAdjacentValues(pair, arr.size());
+
+        if (areValidPositions(arr, adjPairs)) {
+          uniquePairs.addAll(adjPairs);
+        } else {
+          break outer;
+        }
+      }
+      queue.addAll(uniquePairs);
+      result++;
+    }
+    return result;
+  }
+
+  private static boolean areValidPositions(List<List<Integer>> orgArr, List<Pair> adjPairs) {
+    boolean hasZeros = adjPairs.stream().anyMatch(p -> isPositionZero(orgArr, p.x, p.y));
+    return adjPairs.size() == 3 && !hasZeros;
+  }
+
+  private static boolean isPositionZero(List<List<Integer>> arr, int i, int j) {
+    return arr.get(i).get(j) == 0;
+  }
+
+  private static List<Pair> getAdjacentValues(Pair pair, int matrixSize) {
     List<Pair> list = new ArrayList<>();
 
-    if (pair.x + 1 < n) {
+    if (pair.x + 1 < matrixSize) {
       list.add(new Pair(pair.x + 1, pair.y));
     }
-    if (pair.y + 1 < n) {
+    if (pair.y + 1 < matrixSize) {
       list.add(new Pair(pair.x, pair.y + 1));
     }
-    if (pair.x + 1 < n && pair.y + 1 < n) {
+    if (pair.x + 1 < matrixSize && pair.y + 1 < matrixSize) {
       list.add(new Pair(pair.x + 1, pair.y + 1));
     }
 
@@ -84,6 +88,11 @@ public class Solution {
 
   static class Pair {
     int x, y;
+
+    Pair(int x, int y) {
+      this.x = x;
+      this.y = y;
+    }
 
     @Override
     public boolean equals(Object o) {
@@ -98,11 +107,5 @@ public class Solution {
     public int hashCode() {
       return Objects.hash(x, y);
     }
-
-    Pair(int x, int y) {
-      this.x = x;
-      this.y = y;
-    }
   }
-
 }
