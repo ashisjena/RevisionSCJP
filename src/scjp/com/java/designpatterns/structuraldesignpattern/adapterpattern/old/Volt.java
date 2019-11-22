@@ -1,4 +1,4 @@
-package scjp.com.java.designpatterns.structuraldesignpattern.adapterpattern;
+package scjp.com.java.designpatterns.structuraldesignpattern.adapterpattern.old;
 
 public class Volt
 {

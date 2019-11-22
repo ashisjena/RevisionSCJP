@@ -11,7 +11,7 @@ public class MergeSort {
   }
 
   private static void mergeSortRec(int[] arr, int low, int high) {
-    if (high - low <= 1) {
+    if (low + 1 == high) {
       return;
     }
 
@@ -24,19 +24,19 @@ public class MergeSort {
   private static void sortPartial(int[] arr, int low, int mid, int high) {
     int[] partialArr = new int[high - low];
 
-    for (int i = 0, j = low, k = mid; i < partialArr.length; i++) {
-      if (j == mid) {
-        partialArr[i] = arr[k];
-        k++;
-      } else if (k == high) {
-        partialArr[i] = arr[j];
-        j++;
-      } else if (arr[j] > arr[k]) {
-        partialArr[i] = arr[k];
-        k++;
+    for (int i = 0, lowIndex = low, midIndex = mid; i < partialArr.length; i++) {
+      if (lowIndex == mid) {
+        partialArr[i] = arr[midIndex];
+        midIndex++;
+      } else if (midIndex == high) {
+        partialArr[i] = arr[lowIndex];
+        lowIndex++;
+      } else if (arr[lowIndex] > arr[midIndex]) {
+        partialArr[i] = arr[midIndex];
+        midIndex++;
       } else {
-        partialArr[i] = arr[j];
-        j++;
+        partialArr[i] = arr[lowIndex];
+        lowIndex++;
       }
     }
     System.arraycopy(partialArr, 0, arr, low, partialArr.length);

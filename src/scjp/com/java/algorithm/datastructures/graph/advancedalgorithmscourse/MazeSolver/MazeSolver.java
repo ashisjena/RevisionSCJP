@@ -20,7 +20,7 @@ public class MazeSolver {
         if (found) {
             System.out.println("Route found to exit....");
         } else {
-            System.out.println("No Solution found....");
+            System.out.println("No BarterMarket found....");
         }
     }
 

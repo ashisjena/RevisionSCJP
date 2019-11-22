@@ -42,16 +42,16 @@ public class Knapsack {
         int K[][] = new int[n + 1][totalKnapsackSize + 1];
 
         // Build table K[][] in bottom up manner
-        for (int i = 0; i <= n; i++) {
-            for (int currKnapsackSize = 0; currKnapsackSize <= totalKnapsackSize; currKnapsackSize++) {
-                if (i == 0 || currKnapsackSize == 0) {
+        for (int i = 1; i <= n; i++) {
+            for (int currKnapsackSize = 1; currKnapsackSize <= totalKnapsackSize; currKnapsackSize++) {
+                /*if (i == 0 || currKnapsackSize == 0) {
                     K[i][currKnapsackSize] = 0;
                     continue;
-                }
+                }*/
 
                 int currentSackWeight = weightArr[i - 1];
                 int currentSackPrice = priceArr[i - 1];
-                if (currKnapsackSize < weightArr[i - 1]) { // current knapsack size is less than weight of current sack
+                if (currKnapsackSize < currentSackWeight) { // current knapsack size is less than weight of current sack
                     K[i][currKnapsackSize] = K[i - 1][currKnapsackSize]; // Copy previous price.
                 } else {
                     K[i][currKnapsackSize] = Math.max(

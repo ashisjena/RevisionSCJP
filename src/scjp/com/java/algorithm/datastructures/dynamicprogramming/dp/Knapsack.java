@@ -34,6 +34,8 @@ public class Knapsack {
     }
     System.out.println(knapsackMemo(weightArr, priceArr, knapsackSize, n, dp));
     PrintMatrix.print(dp);
+
+    System.out.println(knapsackBottomUp(weightArr, priceArr, 5));
   }
 
   private static int knapsack(int[] weights, int[] values, int W, int i) {
@@ -67,18 +69,24 @@ public class Knapsack {
   }
 
   private static int knapsackBottomUp(int[] weights, int[] values, int W) {
-    int N = weights.length;
+    int N = values.length;
     int[][] dp = new int[W + 1][N + 1];
 
     for (int i = 1; i <= N; i++) {
       for (int w = 1; w <= W; w++) {
-        if (weights[i - 1] <= w) {
-          dp[w][i] = Math.max(dp[w - weights[i - 1]][i - 1], dp[w][i - 1]);
+        int currentWeight = weights[i - 1];
+        int currentValue = values[i - 1];
+        if (currentWeight <= w) {
+          dp[w][i] = Math.max(
+                              currentValue + dp[w - currentWeight][i - 1], // Including
+                              dp[w][i - 1] // excluding
+                            );
         } else {
-          dp[w][i] = dp[w][i - 1];
+          dp[w][i] = dp[w][i - 1]; // Copy the previous
         }
       }
     }
+    PrintMatrix.print(dp);
     return dp[W][N];
   }
 }

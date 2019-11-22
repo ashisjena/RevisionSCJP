@@ -13,6 +13,13 @@ import javax.swing.JPanel;
 
 import scjp.com.java.designpatterns.structuraldesignpattern.flyweightpattern.ShapeFactory.ShapeType;
 
+/*
+    This pattern is used to reduce the memory footprint. It can also improve performance in applications where object instantiation is expensive.
+    Simply put, the flyweight pattern is based on a factory which recycles created objects by storing them after creation.
+    Each time an object is requested, the factory looks up the object in order to check if it's already been created.
+    If it has, the existing object is returned – otherwise, a new one is created, stored and then returned.
+    Fly Weight objects are immutable. Any operation on the state must be performed by the factory.
+ */
 public class DrawingClient extends JFrame
 {
     private static final long serialVersionUID = -1350200437285282550L;

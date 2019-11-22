@@ -1,11 +1,7 @@
-package scjp.com.java.designpatterns.structuraldesignpattern.adapterpattern;
+package scjp.com.java.designpatterns.structuraldesignpattern.adapterpattern.old;
 
-public class SocketAdapterUsingObjectAdapterImpl implements SocketAdapterInterface
+public class SocketAdapterUsingClassAdapterImpl extends Socket implements SocketAdapterInterface
 {
-
-    //Using Composition for adapter pattern
-    private Socket sock = new Socket();
-
     private Volt convertVolt( Volt v, int i )
     {
         return new Volt( v.getVolts() / i );
@@ -14,21 +10,22 @@ public class SocketAdapterUsingObjectAdapterImpl implements SocketAdapterInterfa
     @Override
     public Volt get240Volt()
     {
-        return sock.getVolt();
+        return getVolt();
     }
 
     @Override
     public Volt get12Volt()
     {
-        Volt v = sock.getVolt();
+        Volt v = getVolt();
         return convertVolt( v, 20 );
     }
 
     @Override
     public Volt get3Volt()
     {
-        Volt v = sock.getVolt();
+        Volt v = getVolt();
         return convertVolt( v, 80 );
     }
+
 
 }

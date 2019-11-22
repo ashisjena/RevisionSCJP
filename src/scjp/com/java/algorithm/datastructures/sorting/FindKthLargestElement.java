@@ -6,24 +6,25 @@ public class FindKthLargestElement {
 
   public static void main(String[] args) {
     int[] arr = {3, 2, 4, 65, 32, 8, 9};
-    int result = findKthLargestElement(arr, 0, arr.length - 1, 3);
+    int k = 3;
+    int indexOfKthLargest = arr.length - k;
+    int result = findKthLargestElement(arr, 0, arr.length - 1, indexOfKthLargest);
     System.out.println(result);
   }
 
-  public static int findKthLargestElement(int[] arr, int left, int right, int k) {
-    int indexOfKthLargest = arr.length - k;
-
+  public static int findKthLargestElement(int[] arr, int left, int right, int indexOfKthLargest) {
     int restingPositionForPivot = partition(arr, left, right);
 
     if (restingPositionForPivot > indexOfKthLargest) {
-      return findKthLargestElement(arr, left, restingPositionForPivot - 1, k);
+      return findKthLargestElement(arr, left, restingPositionForPivot - 1, indexOfKthLargest);
     } else if (restingPositionForPivot < indexOfKthLargest) {
-      return findKthLargestElement(arr, restingPositionForPivot + 1, right, k);
+      return findKthLargestElement(arr, restingPositionForPivot + 1, right, indexOfKthLargest);
     } else {
       return arr[indexOfKthLargest];
     }
   }
 
+  @SuppressWarnings("Duplicates")
   private static int partition(int[] arr, int left, int right) {
     int pivot = arr[right];
 
@@ -32,7 +33,9 @@ public class FindKthLargestElement {
     for (int j = left; j < right; j++) {
       if (arr[j] <= pivot) {
         i++;
-        swap(arr, i, j);
+        if (i < j) {
+          swap(arr, i, j);
+        }
       }
     }
 

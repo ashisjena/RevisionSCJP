@@ -33,6 +33,23 @@ public class Heap {
     TreeEx.print(minHeap);
   }
 
+  static Node<Integer> buildMinHeap(int[] arr) {
+    for (int i = 0; i < arr.length; i++) {
+      bubbleUp(arr, i);
+    }
+    return createHeapFromArray(arr);
+  }
+
+  private static void bubbleUp(int[] arr, int pos) {
+    int parentIdx = pos / 2;
+    int currentIdx = pos;
+    while (currentIdx > 0 && arr[parentIdx] > arr[currentIdx]) {
+      swap(arr, parentIdx, currentIdx);
+      currentIdx = parentIdx;
+      parentIdx = parentIdx / 2;
+    }
+  }
+
   static Node<Integer> createHeapFromArray(int[] arr) {
     Node<Integer> head = new Node<>(arr[0]);
     Queue<Node<Integer>> queue = new LinkedList<>();
@@ -66,23 +83,6 @@ public class Heap {
     }
 
     return createHeapFromArray(arr);
-  }
-
-  static Node<Integer> buildMinHeap(int[] arr) {
-    for (int i = 0; i < arr.length; i++) {
-      bubbleUp(arr, i);
-    }
-    return createHeapFromArray(arr);
-  }
-
-  private static void bubbleUp(int[] arr, int pos) {
-    int parentIdx = pos / 2;
-    int currentIdx = pos;
-    while (currentIdx > 0 && arr[parentIdx] > arr[currentIdx]) {
-      swap(arr, parentIdx, currentIdx);
-      currentIdx = parentIdx;
-      parentIdx = parentIdx / 2;
-    }
   }
 
   private static void heapify(int[] arr, int i) {

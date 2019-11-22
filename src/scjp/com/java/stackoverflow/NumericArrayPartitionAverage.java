@@ -57,7 +57,7 @@ public class NumericArrayPartitionAverage
 			indexes.add( i );
 			if ( avg( list, indexes ) == avg_e( list, indexes ) )
 			{
-				System.out.println( "Solution found!" );
+				System.out.println( "BarterMarket found!" );
 				printSolution( list, indexes );
 			}
 			backtrack( list, i + 1, indexes );

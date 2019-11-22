@@ -1,4 +1,4 @@
-package scjp.com.java.designpatterns.structuraldesignpattern.facadepattern;
+package scjp.com.java.designpatterns.structuraldesignpattern.facadepattern.old;
 
 import java.sql.Connection;
 

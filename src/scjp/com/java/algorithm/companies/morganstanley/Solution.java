@@ -9,7 +9,7 @@ public class Solution implements Runnable
 {
 	public static void main( String[] args )
 	{
-		//new Thread( null, new Solution(), "", 256 * MathUtil._1MB_AS_BYTES ).start();
+		//new Thread( null, new BarterMarket(), "", 256 * MathUtil._1MB_AS_BYTES ).start();
 
 		/*System.out.println(reverseNo( 1200 ));
 		System.out.println( CalculateReverseSum( 15, 43 ) );*/

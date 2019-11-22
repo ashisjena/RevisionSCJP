@@ -3,7 +3,7 @@ package scjp.com.java.algorithm.aapractice;
 // Q) determine if a point is inside a 2D convex polygon
 
 /*
- * Solution 1) Draw a horizontal line to the right of each point and extend it to infinity
+ * BarterMarket 1) Draw a horizontal line to the right of each point and extend it to infinity
  * 
  * 2) Count the number of times the line intersects with polygon edges.
  * 
