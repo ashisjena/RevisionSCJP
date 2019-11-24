@@ -75,7 +75,6 @@ public class HousePaint {
 
   @Test
   public void testUniqueColors() {
-
     assertEquals(21, paintHouseUniqueColors(cost, 0, 0));
   }
 }

@@ -35,6 +35,7 @@ class Driver implements Runnable
         try
         {
             doneSignal.await(); // wait for all to finish
+            System.out.println("Bus Started");
         }
         catch ( InterruptedException e )
         {
@@ -61,6 +62,8 @@ class Worker implements Runnable
             startSignal.await();
             // doWork();
             doneSignal.countDown();
+//            doneSignal.countDown();
+            System.out.println("Worker Complete");
         }
         catch ( InterruptedException ex )
         {
