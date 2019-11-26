@@ -39,8 +39,8 @@ public class PieceTour {
     return tour;
   }
 
-  private void sortByNoOfNextAvailableMoves(List<Pair<Integer, Integer>> validPositions) {
-    validPositions.sort(Comparator.comparingInt(pos -> getValidMoves(pos).size()));
+  private void sortByNoOfNextAvailableMoves(List<Pair<Integer, Integer>> positions) {
+    positions.sort(Comparator.comparingInt(pos -> getValidMoves(pos).size()));
   }
 
   private boolean areAllPositionsVisited() {
@@ -50,13 +50,13 @@ public class PieceTour {
   private List<Pair<Integer, Integer>> getValidMoves(Pair<Integer, Integer> p) {
     return Stream.of(
             new Pair<>(p.getX() + 3, p.getY()),
-            new Pair<>(p.getX() - 3, p.getY()),
-            new Pair<>(p.getX(), p.getY() - 3),
-            new Pair<>(p.getX(), p.getY() + 3),
             new Pair<>(p.getX() + 2, p.getY() - 2),
-            new Pair<>(p.getX() - 2, p.getX() - 2),
-            new Pair<>(p.getX() + 2, p.getY() + 2),
-            new Pair<>(p.getX() - 2, p.getY() + 2)
+            new Pair<>(p.getX(), p.getY() - 3),
+            new Pair<>(p.getX() - 2, p.getY() - 2),
+            new Pair<>(p.getX() - 3, p.getY()),
+            new Pair<>(p.getX() - 2, p.getY() + 2),
+            new Pair<>(p.getX(), p.getY() + 3),
+            new Pair<>(p.getX() + 2, p.getY() + 2)
     ).filter(this::isValidPosition).collect(Collectors.toList());
   }
 
