@@ -24,7 +24,7 @@ public class PieceTour {
     movesCount++;
 
     final List<Pair<Integer, Integer>> validPositions = getValidMoves(pos);
-    sortWithNoOfValidMovesFromPosition(validPositions);
+    sortByNoOfNextAvailableMoves(validPositions);
     for (Pair<Integer, Integer> nextPos : validPositions) {
       final List<Pair<Integer, Integer>> visitedPath = getTourRoute(nextPos);
       if (areAllPositionsVisited()) {
@@ -39,7 +39,7 @@ public class PieceTour {
     return tour;
   }
 
-  private void sortWithNoOfValidMovesFromPosition(List<Pair<Integer, Integer>> validPositions) {
+  private void sortByNoOfNextAvailableMoves(List<Pair<Integer, Integer>> validPositions) {
     validPositions.sort(Comparator.comparingInt(pos -> getValidMoves(pos).size()));
   }
 
