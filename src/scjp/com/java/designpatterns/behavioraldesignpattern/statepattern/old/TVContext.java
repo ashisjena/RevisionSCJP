@@ -1,4 +1,4 @@
-package scjp.com.java.designpatterns.behavioraldesignpattern.statepattern;
+package scjp.com.java.designpatterns.behavioraldesignpattern.statepattern.old;
 
 public class TVContext implements State
 {
