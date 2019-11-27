@@ -42,26 +42,26 @@ public class TurnstileTest extends TurnstileFSM {
 
   @Test
   public void normalOperation() {
-    coin();
+    coinEvent();
     assertActions("U");
-    pass();
+    passEvent();
     assertActions("UL");
   }
 
   @Test
   public void tressPass() {
-    pass();
+    passEvent();
     assertActions("A");
-    coin();
+    coinEvent();
     assertActions("AU");
   }
 
   @Test
   public void manyCoinsThenPass() {
     for (int i = 0; i < 5; i++) {
-      coin();
+      coinEvent();
     }
-    pass();
+    passEvent();
     assertActions("UTTTTL");
   }
 }

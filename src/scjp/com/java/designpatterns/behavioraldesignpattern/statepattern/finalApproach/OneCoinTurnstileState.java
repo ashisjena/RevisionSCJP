@@ -3,25 +3,25 @@ package scjp.com.java.designpatterns.behavioraldesignpattern.statepattern.finalA
 public enum OneCoinTurnstileState implements TurnstileState {
   LOCKED {
     @Override
-    public void coin(TurnstileFSM fsm) {
+    public void coinEvent(TurnstileFSM fsm) {
       fsm.setState(UNLOCKED);
       fsm.unlock();
     }
 
     @Override
-    public void pass(TurnstileFSM fsm) {
+    public void passEvent(TurnstileFSM fsm) {
       fsm.alarm();
     }
   },
   UNLOCKED {
     @Override
-    public void pass(TurnstileFSM fsm) {
+    public void passEvent(TurnstileFSM fsm) {
       fsm.setState(LOCKED);
       fsm.lock();
     }
 
     @Override
-    public void coin(TurnstileFSM fsm) {
+    public void coinEvent(TurnstileFSM fsm) {
       fsm.thankyou();
     }
   }

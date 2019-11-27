@@ -1,7 +1,7 @@
 package scjp.com.java.designpatterns.behavioraldesignpattern.statepattern.finalApproach;
 
 public interface TurnstileState {
-  void coin(TurnstileFSM turnstile);
+  void coinEvent(TurnstileFSM turnstile);
 
-  void pass(TurnstileFSM turnstile);
+  void passEvent(TurnstileFSM turnstile);
 }

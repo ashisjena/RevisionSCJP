@@ -15,11 +15,11 @@ public abstract class TurnstileFSM {
 
   protected abstract void thankyou();
 
-  public void coin() {
-    state.coin(this);
+  public void coinEvent() {
+    state.coinEvent(this);
   }
 
-  public void pass() {
-    state.pass(this);
+  public void passEvent() {
+    state.passEvent(this);
   }
 }
