@@ -1,4 +1,4 @@
-package scjp.com.java.designpatterns.behavioraldesignpattern.visitordesignpattern;
+package scjp.com.java.designpatterns.behavioraldesignpattern.visitordesignpattern.normalApproach;
 
 public class Fruit implements ItemElement
 {

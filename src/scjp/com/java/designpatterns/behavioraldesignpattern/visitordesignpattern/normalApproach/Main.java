@@ -1,6 +1,6 @@
-package scjp.com.java.designpatterns.behavioraldesignpattern.visitordesignpattern;
+package scjp.com.java.designpatterns.behavioraldesignpattern.visitordesignpattern.normalApproach;
 
-public class ShoppingCartClient
+public class Main
 {
     public static void main( String[] args )
     {

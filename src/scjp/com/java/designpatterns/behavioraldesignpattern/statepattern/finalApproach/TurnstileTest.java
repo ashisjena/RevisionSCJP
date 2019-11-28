@@ -7,22 +7,22 @@ import static org.junit.Assert.assertEquals;
 
 public class TurnstileTest extends TurnstileFSM {
   @Override
-  protected void alarm() {
+  public void alarmAction() {
     this.actions += "A";
   }
 
   @Override
-  protected void lock() {
+  public void lockAction() {
     this.actions += "L";
   }
 
   @Override
-  protected void unlock() {
+  public void unlockAction() {
     this.actions += "U";
   }
 
   @Override
-  protected void thankyou() {
+  public void thankyouAction() {
     this.actions += "T";
   }
 

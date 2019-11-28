@@ -1,19 +1,19 @@
 package scjp.com.java.designpatterns.behavioraldesignpattern.statepattern.finalApproach;
 
-public abstract class TurnstileFSM {
+public abstract class TurnstileFSM implements Turnstile {
   private TurnstileState state;
 
   protected void setState(TurnstileState state) {
     this.state = state;
   }
 
-  protected abstract void alarm();
+  public abstract void alarmAction();
 
-  protected abstract void lock();
+  public abstract void lockAction();
 
-  protected abstract void unlock();
+  public abstract void unlockAction();
 
-  protected abstract void thankyou();
+  public abstract void thankyouAction();
 
   public void coinEvent() {
     state.coinEvent(this);

@@ -5,24 +5,24 @@ public enum OneCoinTurnstileState implements TurnstileState {
     @Override
     public void coinEvent(TurnstileFSM fsm) {
       fsm.setState(UNLOCKED);
-      fsm.unlock();
+      fsm.unlockAction();
     }
 
     @Override
     public void passEvent(TurnstileFSM fsm) {
-      fsm.alarm();
+      fsm.alarmAction();
     }
   },
   UNLOCKED {
     @Override
     public void passEvent(TurnstileFSM fsm) {
       fsm.setState(LOCKED);
-      fsm.lock();
+      fsm.lockAction();
     }
 
     @Override
     public void coinEvent(TurnstileFSM fsm) {
-      fsm.thankyou();
+      fsm.thankyouAction();
     }
   }
 }
