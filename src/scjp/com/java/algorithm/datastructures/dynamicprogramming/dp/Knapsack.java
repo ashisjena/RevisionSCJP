@@ -1,6 +1,6 @@
 package scjp.com.java.algorithm.datastructures.dynamicprogramming.dp;
 
-import scjp.com.java.algorithm.dynamicProgramming.PrintMatrix;
+import scjp.com.java.algorithm.PrintMatrix;
 
 /*
   States:

@@ -1,7 +1,7 @@
 package scjp.com.java.algorithm.datastructures.dynamicprogramming.dp;
 
 import org.junit.Test;
-import scjp.com.java.algorithm.dynamicProgramming.PrintMatrix;
+import scjp.com.java.algorithm.PrintMatrix;
 
 import static org.junit.Assert.assertEquals;
 

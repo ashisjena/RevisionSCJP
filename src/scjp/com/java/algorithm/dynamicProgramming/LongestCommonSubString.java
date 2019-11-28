@@ -1,5 +1,7 @@
 package scjp.com.java.algorithm.dynamicProgramming;
 
+import scjp.com.java.algorithm.PrintMatrix;
+
 public class LongestCommonSubString {
   /*
      Returns length of longest common substring

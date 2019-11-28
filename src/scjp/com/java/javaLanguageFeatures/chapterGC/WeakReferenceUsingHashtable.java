@@ -1,6 +1,6 @@
 package scjp.com.java.javaLanguageFeatures.chapterGC;
 
-import scjp.com.java.chapter6.Employee;
+import scjp.com.java.languageFundamentals.chapter6.Employee;
 
 import java.lang.ref.ReferenceQueue;
 import java.lang.ref.WeakReference;
