@@ -6,7 +6,7 @@ import java.util.concurrent.*;
 
 public class Demo {
   public static void main(String[] args) throws InterruptedException, ExecutionException, TimeoutException {
-    Callable<String> callable1 = () -> {
+    /*Callable<String> callable1 = () -> {
       Thread.sleep(10000);
       return Thread.currentThread().getName();
     };
@@ -20,18 +20,20 @@ public class Demo {
     List<Future<String>> fList = es.invokeAll(Arrays.asList(callable1, callable2));
     System.out.println(fList.get(0).get());
     System.out.println(fList.get(1).get());
-    /*Future<String> future1 = es.submit(callable1);
+    *//*Future<String> future1 = es.submit(callable1);
     Future<String> future2 = es.submit(callable1);
     future1.get(10, TimeUnit.MILLISECONDS);
-    future2.get(10, TimeUnit.MILLISECONDS);*/
+    future2.get(10, TimeUnit.MILLISECONDS);*//*
 
     System.out.println("--------------------------");
-    /*CompletionService cs = new ExecutorCompletionService(es);
+    *//*CompletionService cs = new ExecutorCompletionService(es);
     cs.submit(callable1);
     cs.submit(callable2);
     System.out.println(cs.take().get());
-    System.out.println(cs.take().get());*/
+    System.out.println(cs.take().get());*//*
 
-    es.shutdown();
+    es.shutdown();*/
+
+    System.out.println(7 >>> 1);
   }
 }

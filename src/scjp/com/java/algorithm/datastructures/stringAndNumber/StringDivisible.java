@@ -1,4 +1,4 @@
-package scjp.com.java.algorithm.datastructures.string;
+package scjp.com.java.algorithm.datastructures.stringAndNumber;
 
 import org.junit.Before;
 import org.junit.Test;
