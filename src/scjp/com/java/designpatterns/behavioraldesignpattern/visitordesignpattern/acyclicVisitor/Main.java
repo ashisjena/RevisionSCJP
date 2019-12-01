@@ -5,7 +5,7 @@ public class Main {
     Hayos modem = new Hayos();
 
     UnixModemConfigurator visitor = new UnixModemConfigurator();
-    visitor.visit(modem);
+    modem.accept(visitor);
     modem.dial();
     modem.send();
     modem.hangup();

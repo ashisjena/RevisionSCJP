@@ -1,4 +1,4 @@
-package scjp.com.java.designpatterns.behavioraldesignpattern.visitordesignpattern.normalApproach;
+package scjp.com.java.designpatterns.behavioraldesignpattern.visitordesignpattern.old;
 
 public class Main
 {

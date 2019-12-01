@@ -1,4 +1,5 @@
 Whenever we have a behaviour which is polymorphic to a hierarchy but doesn't belong in that hierarchy.
+Adding polymorphic behaviour to existing hierarchy without changing those  hierarchy 
 
  
 *) Allows you to add methods to classes of different types without much altering to those classes.
