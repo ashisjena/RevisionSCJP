@@ -2,6 +2,7 @@ package scjp.com.java.algorithm.datastructures.dynamicprogramming.dp;
 
 import scjp.com.java.algorithm.PrintMatrix;
 
+// Choose k Numbers from n different numbers;
 // Binomial Coefficient
 /*
   Formula : C(n, k) = n!/(n-k)!k!

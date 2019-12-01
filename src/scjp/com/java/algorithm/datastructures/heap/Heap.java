@@ -34,16 +34,26 @@ public class Heap {
   }
 
   static Node<Integer> buildMinHeap(int[] arr) {
-    for (int i = 0; i < arr.length; i++) {
-      bubbleUp(arr, i);
-    }
+    minHeap(arr);
     return createHeapFromArray(arr);
   }
 
-  private static void bubbleUp(int[] arr, int pos) {
+  public static void minHeap(int[] arr) {
+    for (int i = 0; i < arr.length; i++) {
+      bubbleUp(arr, i, true);
+    }
+  }
+
+  public static void maxHeap(int[] arr) {
+    for (int i = 0; i < arr.length; i++) {
+      bubbleUp(arr, i, false);
+    }
+  }
+
+  private static void bubbleUp(int[] arr, int pos, boolean isMeanHeap) {
     int parentIdx = pos / 2;
     int currentIdx = pos;
-    while (currentIdx > 0 && arr[parentIdx] > arr[currentIdx]) {
+    while (currentIdx > 0 && isMeanHeap ? arr[parentIdx] > arr[currentIdx] : arr[parentIdx] < arr[currentIdx]) {
       swap(arr, parentIdx, currentIdx);
       currentIdx = parentIdx;
       parentIdx = parentIdx / 2;
@@ -70,7 +80,7 @@ public class Heap {
   }
 
   // Complexity O(N*logN)
-  static Node<Integer> buildMaxHeap(int[] arr) {
+  public static Node<Integer> buildMaxHeap(int[] arr) {
     // {1, 3, 5, 4, 6, 13, 10, 9, 8, 15, 17}
     // Total Nodes = 11
     // Last Non-leaf node Index = (11 / 2) - 1 = 4. (n/2)-1
