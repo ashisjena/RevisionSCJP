@@ -1,4 +1,4 @@
-package scjp.com.java.designpatterns.behavioraldesignpattern.mementopattern;
+package scjp.com.java.designpatterns.behavioraldesignpattern.mementopattern.old;
 
 public class FileWriterCaretaker
 {

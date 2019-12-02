@@ -1,4 +1,4 @@
-package scjp.com.java.designpatterns.structuraldesignpattern.flyweightpattern;
+package scjp.com.java.designpatterns.structuraldesignpattern.flyweightpattern.old;
 
 import java.util.HashMap;
 

@@ -1,4 +1,4 @@
-package scjp.com.java.designpatterns.behavioraldesignpattern.mediatorpattern;
+package scjp.com.java.designpatterns.behavioraldesignpattern.mediatorpattern.old;
 
 public class ChatClient
 {

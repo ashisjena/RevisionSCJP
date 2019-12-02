@@ -1,4 +1,4 @@
-package scjp.com.java.designpatterns.structuraldesignpattern.decoratorpattern;
+package scjp.com.java.designpatterns.structuraldesignpattern.decoratorpattern.carEx;
 
 public class LuxuryCar extends CarDecorator
 {

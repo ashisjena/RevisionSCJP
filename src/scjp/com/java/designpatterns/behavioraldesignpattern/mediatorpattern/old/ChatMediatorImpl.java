@@ -1,4 +1,4 @@
-package scjp.com.java.designpatterns.behavioraldesignpattern.mediatorpattern;
+package scjp.com.java.designpatterns.behavioraldesignpattern.mediatorpattern.old;
 
 import java.util.ArrayList;
 import java.util.List;

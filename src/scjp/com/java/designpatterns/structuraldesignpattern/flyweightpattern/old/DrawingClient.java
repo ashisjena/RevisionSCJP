@@ -1,4 +1,4 @@
-package scjp.com.java.designpatterns.structuraldesignpattern.flyweightpattern;
+package scjp.com.java.designpatterns.structuraldesignpattern.flyweightpattern.old;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -11,7 +11,7 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-import scjp.com.java.designpatterns.structuraldesignpattern.flyweightpattern.ShapeFactory.ShapeType;
+import scjp.com.java.designpatterns.structuraldesignpattern.flyweightpattern.old.ShapeFactory.ShapeType;
 
 /*
     This pattern is used to reduce the memory footprint. It can also improve performance in applications where object instantiation is expensive.
