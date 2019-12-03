@@ -32,17 +32,17 @@ public class FindTriplets {
     assertTriplets(Collections.singletonList(Arrays.asList(2, 5, 8)), new int[]{2, 3, 5, 6, 8});
     assertTriplets(Arrays.asList(Arrays.asList(3, 6, 9), Arrays.asList(2, 5, 8)), new int[]{2, 3, 5, 6, 8, 9});
     assertTriplets(Arrays.asList(
-        Arrays.asList(8, 9, 10),
-        Arrays.asList(6, 8, 10),
-        Arrays.asList(2, 6, 10),
-        Arrays.asList(3, 6, 9),
-        Arrays.asList(2, 5, 8)), new int[]{2, 3, 5, 6, 8, 9, 10});
+            Arrays.asList(8, 9, 10),
+            Arrays.asList(6, 8, 10),
+            Arrays.asList(2, 6, 10),
+            Arrays.asList(3, 6, 9),
+            Arrays.asList(2, 5, 8)), new int[]{2, 3, 5, 6, 8, 9, 10});
     assertTriplets(Arrays.asList(
-        Arrays.asList(4, 6, 8),
-        Arrays.asList(1, 5, 9),
-        Arrays.asList(2, 5, 8),
-        Arrays.asList(4, 5, 6),
-        Arrays.asList(2, 4, 6)), new int[]{1, 2, 4, 5, 6, 8, 9});
+            Arrays.asList(4, 6, 8),
+            Arrays.asList(1, 5, 9),
+            Arrays.asList(2, 5, 8),
+            Arrays.asList(4, 5, 6),
+            Arrays.asList(2, 4, 6)), new int[]{1, 2, 4, 5, 6, 8, 9});
   }
 
   @Test
@@ -83,18 +83,18 @@ public class FindTriplets {
     }
 
     final Set<Integer> set = new HashSet<>(triplets.get(pos));
-    int result1 = 1;
-    for (List<Integer> triplet : triplets) {
-      if (triplet == triplets.get(pos)) {
-        continue;
-      }
-      if (!set.contains(triplet.get(0)) &&
-          !set.contains(triplet.get(1)) &&
-          !set.contains(triplet.get(2))) {
-        set.addAll(triplet);
-        result1++;
-      }
-    }
+    int result1 = triplets.stream().
+            filter(t -> t != triplets.get(pos)).
+            reduce(1, (acc, triplet) -> {
+              if (!set.contains(triplet.get(0)) &&
+                  !set.contains(triplet.get(1)) &&
+                  !set.contains(triplet.get(2))) {
+                set.addAll(triplet);
+                return acc + 1;
+              } else {
+                return acc;
+              }
+            }, Integer::sum);
 
     int result2 = maxUniqueTripletsCount(triplets, pos + 1);
     return Math.max(result1, result2);
