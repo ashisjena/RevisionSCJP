@@ -1,23 +1,29 @@
 package scjp.com.java.algorithm.datastructures.maze.zapcom;
 
+import org.junit.Test;
+
 import java.util.*;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
+
+import static org.junit.Assert.assertEquals;
 
 public class MaxMatrixWith1 {
-  public static void main(String[] args) {
+  @Test
+  public void largestMatrixTest() {
     List<List<Integer>> list = new ArrayList<>();
-    list.add(Arrays.asList(new Integer[]{0, 1, 1, 0, 1, 0, 1}));
-    list.add(Arrays.asList(new Integer[]{1, 1, 0, 1, 0, 1, 0}));
-    list.add(Arrays.asList(new Integer[]{1, 1, 1, 1, 1, 1, 1}));
-    list.add(Arrays.asList(new Integer[]{1, 0, 1, 1, 1, 1, 1}));
-    list.add(Arrays.asList(new Integer[]{1, 0, 1, 1, 1, 1, 1}));
-    list.add(Arrays.asList(new Integer[]{1, 0, 1, 1, 1, 1, 1}));
-    list.add(Arrays.asList(new Integer[]{1, 0, 1, 0, 1, 1, 1}));
+    list.add(Arrays.asList(0, 1, 1, 0, 1, 0, 1));
+    list.add(Arrays.asList(1, 1, 0, 1, 0, 1, 0));
+    list.add(Arrays.asList(1, 1, 1, 1, 1, 1, 1));
+    list.add(Arrays.asList(1, 0, 1, 1, 1, 1, 1));
+    list.add(Arrays.asList(1, 0, 1, 1, 1, 1, 1));
+    list.add(Arrays.asList(1, 0, 1, 1, 1, 1, 1));
+    list.add(Arrays.asList(1, 0, 1, 0, 1, 1, 1));
 
-    int result = largestMatrix(list);
-    System.out.println(result);
+    assertEquals(4, largestMatrix(list));
   }
 
-  public static int largestMatrix(List<List<Integer>> arr) {
+  public int largestMatrix(List<List<Integer>> arr) {
     int maxResult = 0;
 
     for (int i = 0; i < arr.size(); i++) {
@@ -37,7 +43,7 @@ public class MaxMatrixWith1 {
     return maxResult;
   }
 
-  private static int resultForCurrPosition(List<List<Integer>> arr, int i, int j) {
+  private int resultForCurrPosition(List<List<Integer>> arr, int i, int j) {
     int result = 1;
     Queue<Pair> queue = new LinkedList<>();
     queue.offer(new Pair(i, j));
@@ -61,29 +67,21 @@ public class MaxMatrixWith1 {
     return result;
   }
 
-  private static boolean areValidPositions(List<List<Integer>> orgArr, List<Pair> adjPairs) {
+  private boolean areValidPositions(List<List<Integer>> orgArr, List<Pair> adjPairs) {
     boolean hasZeros = adjPairs.stream().anyMatch(p -> isPositionZero(orgArr, p.x, p.y));
     return adjPairs.size() == 3 && !hasZeros;
   }
 
-  private static boolean isPositionZero(List<List<Integer>> arr, int i, int j) {
+  private boolean isPositionZero(List<List<Integer>> arr, int i, int j) {
     return arr.get(i).get(j) == 0;
   }
 
-  private static List<Pair> getAdjacentValues(Pair pair, int matrixSize) {
-    List<Pair> list = new ArrayList<>();
-
-    if (pair.x + 1 < matrixSize) {
-      list.add(new Pair(pair.x + 1, pair.y));
-    }
-    if (pair.y + 1 < matrixSize) {
-      list.add(new Pair(pair.x, pair.y + 1));
-    }
-    if (pair.x + 1 < matrixSize && pair.y + 1 < matrixSize) {
-      list.add(new Pair(pair.x + 1, pair.y + 1));
-    }
-
-    return list;
+  private List<Pair> getAdjacentValues(Pair pair, int matrixSize) {
+    return Stream.of(new Pair(pair.x + 1, pair.y),
+            new Pair(pair.x, pair.y + 1),
+            new Pair(pair.x + 1, pair.y + 1)).
+            filter(p -> p.x < matrixSize && p.y < matrixSize).
+            collect(Collectors.toList());
   }
 
   static class Pair {

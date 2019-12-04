@@ -52,4 +52,60 @@ public class Board {
       board[i] = piece;
     }
   }
+
+  public int getPiece(int file, int rank) {
+    return board[rank * 8 + file];
+  }
+
+  public void setPiece(int file, int rank, int piece) {
+    board[rank * 8 + file] = piece;
+  }
+
+  public BoardMemento getMemento() {
+    BoardMementoImpl mi = new BoardMementoImpl();
+    mi.pack(board);
+    return mi;
+  }
+
+  public void setMemento(BoardMemento m) {
+    BoardMementoImpl mi = (BoardMementoImpl) m;
+    board = mi.unpack();
+  }
+
+  private static class BoardMementoImpl implements BoardMemento {
+    private byte[] memo = new byte[32];
+
+    private void pack(int[] board) {
+      for (int i = 0; i < 32; i++) {
+        int nibble1 = board[i * 2] & 0xf;
+        int nibble2 = board[i * 2 + 1] & 0xf;
+        memo[i] = (byte) (nibble1 << 4 | nibble2);
+      }
+    }
+
+    private int[] unpack() {
+      int[] board = new int[64];
+      for (int i = 0; i < 32; i++) {
+        int nibble1 = memo[i] >> 4 & 0xf;
+        int nibble2 = memo[i] & 0xf;
+        nibble1 = extendSign(nibble1);
+        nibble2 = extendSign(nibble2);
+        board[i * 2] = nibble1;
+        board[i * 2 + 1] = nibble2;
+      }
+      return board;
+    }
+
+    private int extendSign(int nibble) {
+      if ((nibble & 0x8) == 0x8) {
+        return nibble | (-1 & (~0xf));
+      } else {
+        return nibble;
+      }
+    }
+  }
 }
+
+
+
+
