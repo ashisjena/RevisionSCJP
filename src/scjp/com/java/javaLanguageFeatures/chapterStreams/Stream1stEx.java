@@ -56,39 +56,40 @@ public class Stream1stEx {
 
     Stream.generate(new PrimeUtil()::next).skip(100).limit(5);
   }
-}
 
-class PrimeUtil {
-  private long lastPrime = 0L;
+  static class PrimeUtil {
+    private long lastPrime = 0L;
 
-  public long next() {
-    lastPrime = next(lastPrime);
-    return lastPrime;
-  }
-
-  public static long next(long after) {
-    long counter = after;
-    while (!isPrime(++counter)) ;
-    return counter;
-  }
-
-  public static boolean isPrime(long num) {
-    if (num <= 1) {
-      return false;
-    }
-    if (num == 2) {
-      return false;
-    }
-    if (num % 2 == 0) {
-      return false;
+    public long next() {
+      lastPrime = next(lastPrime);
+      return lastPrime;
     }
 
-    long maxDivisor = (long) Math.floor(Math.sqrt(num));
-    for (int counter = 3; counter <= maxDivisor; counter += 2) {
-      if (num % counter == 0) {
+    public static long next(long after) {
+      long counter = after;
+      while (!isPrime(++counter)) ;
+      return counter;
+    }
+
+    public static boolean isPrime(long num) {
+      if (num <= 1) {
         return false;
       }
+      if (num == 2) {
+        return false;
+      }
+      if (num % 2 == 0) {
+        return false;
+      }
+
+      long maxDivisor = (long) Math.floor(Math.sqrt(num));
+      for (int counter = 3; counter <= maxDivisor; counter += 2) {
+        if (num % counter == 0) {
+          return false;
+        }
+      }
+      return true;
     }
-    return true;
   }
+
 }

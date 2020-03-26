@@ -25,7 +25,7 @@ public class CarEngineFacade {
     coolingController.run();
     catalyticConverter.on();
   }
-  
+
   public void stopEngine() {
     fuelInjector.off();
     catalyticConverter.off();
@@ -33,50 +33,51 @@ public class CarEngineFacade {
     coolingController.stop();
     airFlowController.off();
   }
-}
 
-class CatalyticConverter {
-  public void on() {
+  class CatalyticConverter {
+    public void on() {
+    }
+
+    public void off() {
+    }
   }
 
-  public void off() {
-  }
-}
-
-class Starter {
-  public void start() {
-  }
-}
-
-class CoolingController {
-  public void setTemperatureUpperLimit(int deffaultCoolingTemp) {
+  class Starter {
+    public void start() {
+    }
   }
 
-  public void run() {
+  class CoolingController {
+    public void setTemperatureUpperLimit(int deffaultCoolingTemp) {
+    }
+
+    public void run() {
+    }
+
+    public void cool(int maxAllowedTemp) {
+    }
+
+    public void stop() {
+    }
   }
 
-  public void cool(int maxAllowedTemp) {
+  class AirFlowController {
+    public void takeAir() {
+    }
+
+    public void off() {
+    }
   }
 
-  public void stop() {
-  }
-}
+  class FuelInjector {
+    public void on() {
+    }
 
-class AirFlowController {
-  public void takeAir() {
-  }
+    public void inject() {
+    }
 
-  public void off() {
-  }
-}
-
-class FuelInjector {
-  public void on() {
+    public void off() {
+    }
   }
 
-  public void inject() {
-  }
-
-  public void off() {
-  }
 }

@@ -1,6 +1,6 @@
 package scjp.com.java.designpatterns.behavioraldesignpattern.interpreterpattern;
 
-public class InterpreterClient
+public class  InterpreterClient
 {
     public InterpreterContext ic;
 

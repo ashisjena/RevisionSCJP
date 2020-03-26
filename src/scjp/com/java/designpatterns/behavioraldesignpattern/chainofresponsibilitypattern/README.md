@@ -1,0 +1,1 @@
+When a client can be served by many services and we don't want the client to know which service doing the work.

@@ -1,0 +1,1 @@
+When we got some business rules or algorithms that we want to be heavily customizable without recompiling or redeploying the iteration.
