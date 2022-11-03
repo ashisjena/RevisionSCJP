@@ -4,8 +4,8 @@ RevisionSCJP
 SCJP practice for personal use
 
 
-```
-@startuml firstDiagram
+```plantuml:firstDiagram
+@startuml
 
 Alice -> Bob: Hello
 Bob -> Alice: Hi!
