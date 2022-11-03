@@ -3,7 +3,7 @@ RevisionSCJP
 
 SCJP practice for personal use
 
-<div hidden>
+
 ```
 @startuml firstDiagram
 
@@ -12,6 +12,5 @@ Bob -> Alice: Hi!
 		
 @enduml
 ```
-</div>
 
 ![](firstDiagram.svg)
