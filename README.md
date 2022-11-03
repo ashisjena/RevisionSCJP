@@ -3,12 +3,15 @@ RevisionSCJP
 
 SCJP practice for personal use
 
-```plantuml
-@startuml
-Bob -> Alice : hello
-@enduml
+<div hidden>
+```
+@startuml firstDiagram
 
-@startuml
-version
+Alice -> Bob: Hello
+Bob -> Alice: Hi!
+		
 @enduml
 ```
+</div>
+
+![](firstDiagram.svg)
