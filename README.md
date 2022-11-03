@@ -13,4 +13,4 @@ Bob -> Alice: Hi!
 @enduml
 ```
 
-![](firstDiagram.svg)
+![](./firstDiagram.svg)
