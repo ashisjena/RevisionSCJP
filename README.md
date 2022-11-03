@@ -3,6 +3,8 @@ RevisionSCJP
 
 SCJP practice for personal use
 
+![First Diagram](./Sample.puml)
+
 
 ```plantuml:firstDiagram
 @startuml
@@ -13,4 +15,4 @@ Bob -> Alice: Hi!
 @enduml
 ```
 
-![](./firstDiagram.svg)
+![FirstDiagram](./firstDiagram.svg)
